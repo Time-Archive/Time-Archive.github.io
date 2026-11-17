@@ -257,9 +257,10 @@
     if (!window.L) { el.innerHTML = '<div class="empty">지도를 불러오지 못했습니다.</div>'; return; }
     // Leaflet 기본 좌표계 = EPSG:3857 (웹 메르카토르), POWO 분포도와 동일한 도법
     const map = L.map(el, { scrollWheelZoom: false, worldCopyJump: true, minZoom: 1, maxZoom: 7, zoomSnap: 0.25 }).setView([15, 100], 2);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-      subdomains: "abcd",
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    // 배경 지도: OpenStreetMap 기본 타일 (API 키 불필요, 저작권 표기 필수)
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
     try {
       const gj = await loadTDWG();
