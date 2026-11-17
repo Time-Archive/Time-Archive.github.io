@@ -11,10 +11,10 @@
 @media (max-width: 760px) {
   #header .site-header { background: #fff; }
 
-  /* 모바일: 스크롤하면 검색창은 메뉴 뒤로 숨고, 분류 버튼 한 줄만 메뉴 아래에 붙음 */
-  .toolbar { top: 8px; background: #fff; }             /* 검색창만 메뉴 뒤로 숨기고, 분류 버튼은 메뉴 아래 10px 띄워 붙임. 숫자를 키우면 더 내려옴 */
-  .toolbar .wrap { padding-top: 12px; padding-bottom: 10px; gap: 10px; }
-  .search { height: 44px; font-size: 16px; }           /* 16px: 아이폰에서 입력 시 화면이 확대되는 것 방지 */
-  .catnav .chip { padding: 6px 12px; }
-  .cat { scroll-margin-top: 128px; }
+  /* 모바일: 검색창 + 분류 버튼 두 줄이 모두 메뉴 바로 아래에 붙음 (높이를 줄여 화면을 덜 가리게) */
+  .toolbar { top: 64px; background: #fff; box-shadow: 0 6px 16px rgba(0, 0, 0, .05); }
+  .toolbar .wrap { padding-top: 8px; padding-bottom: 8px; gap: 6px; }
+  .search { flex: 1 1 100%; height: 40px; padding: 0 16px; font-size: 16px; } /* 16px: 아이폰에서 입력 시 화면이 확대되는 것 방지 */
+  .catnav .chip { padding: 5px 12px; }
+  .cat { scroll-margin-top: 180px; }
 }
