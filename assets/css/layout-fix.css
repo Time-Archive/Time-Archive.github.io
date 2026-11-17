@@ -5,11 +5,14 @@
 #header { position: sticky; top: 0; z-index: 50; }
 .site-header { position: static; }
 
+/* 분류 버튼 줄: 가로 스크롤 영역이 버튼 테두리 위아래를 잘라내지 않도록 여유를 둠 */
+.catnav { padding: 3px 1px; align-items: center; }
+
 @media (max-width: 760px) {
   #header .site-header { background: #fff; }
 
   /* 모바일: 스크롤하면 검색창은 메뉴 뒤로 숨고, 분류 버튼 한 줄만 메뉴 아래에 붙음 */
-  .toolbar { top: -2px; background: #fff; }            /* 메뉴 64px - 검색 줄 66px */
+  .toolbar { top: 8px; background: #fff; }             /* 검색창만 메뉴 뒤로 숨기고, 분류 버튼은 메뉴 아래 10px 띄워 붙임. 숫자를 키우면 더 내려옴 */
   .toolbar .wrap { padding-top: 12px; padding-bottom: 10px; gap: 10px; }
   .search { height: 44px; font-size: 16px; }           /* 16px: 아이폰에서 입력 시 화면이 확대되는 것 방지 */
   .catnav .chip { padding: 6px 12px; }
