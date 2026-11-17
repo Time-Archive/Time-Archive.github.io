@@ -11,7 +11,7 @@
     { key: "jungle", ko: "정글플랜츠", en: "Jungle Plants" },
     { key: "aroid", ko: "아로이드", en: "Aroids" },
   ];
-  const catOf = (k) => CATS.find((c) => c.key === k) || { key: k, ko: k || "기타", en: "" };
+  const catOf = (k) => CATS.find((c) => c.key === k) || { key: k, ko: k || "기타", en: k || "Others" };
 
   // TDWG level 3 경계 데이터: 저장소에 data/tdwg-level3.geojson 이 있으면 우선 사용, 없으면 CDN
   const TDWG_SOURCES = [
@@ -38,7 +38,7 @@
       .map((w) => (/^(sp\.|spp\.|cf\.|aff\.|var\.|subsp\.|ssp\.|f\.|×|x)$/i.test(w) || /^['‘"(]/.test(w) || /['’")]$/.test(w) ? esc(w) : `<i>${esc(w)}</i>`))
       .join(" ");
 
-  // 식물 하나의 태그 목록: 대분류 / 중분류 / 소분류 / 원산지 / 채집자 / 기타
+  // 식물 하나의 태그 목록: 대분류 / Tribe(중분류) / Genus(소분류) / Native(원산지) / 채집자 / 기타
   const tagsOf = (p) => {
     const t = [{ t: "cat", label: catOf(p.category).en }];
     if (p.group) t.push({ t: "group", label: p.group });
@@ -193,8 +193,9 @@
       </div></div>
       <div class="wrap">
         <div class="tagpanel">
-          ${row("분류군", ["group", "genus"], true)}
-          ${row("원산지", ["origin"], false)}
+          ${row("Tribe", ["group"], true)}
+          ${row("Genus", ["genus"], false)}
+          ${row("Native", ["origin"], false)}
           ${row("채집자 · 기타", ["collector", "tag"], false)}
         </div>
         <div id="active"></div>
@@ -214,10 +215,14 @@
       $("#active").innerHTML = state.tag || state.q
         ? `<div class="tagrow" style="padding:18px 0 0">${state.tag ? `<a class="chip on" href="plants.html">${esc(state.tag)} ×</a>` : ""}<span class="count" style="align-self:center">${list.length}종</span></div>`
         : "";
-      app.querySelectorAll(".tagpanel .chip").forEach((c) => c.classList.toggle("on", c.dataset.l === state.tag));
+      app.querySelectorAll(".tagpanel .chip").forEach((c) => {
+        const on = c.dataset.l === state.tag;
+        c.classList.toggle("on", on);
+        if (on) c.closest("details").open = true; // 선택된 태그가 있는 줄은 펼쳐 둠
+      });
 
       $("#cats").innerHTML = CATS.map((c, i) => {
-        // 중분류 → 소분류 → 학명 abc 순
+        // 중분류(Tribe) → 소분류(Genus) → 학명 abc 순
         const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(a.group, b.group) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
         if (!items.length && (state.tag || state.q)) return "";
         const groups = [];
@@ -313,7 +318,7 @@
               ${dl("학명", `<span class="sci" style="font-size:19px">${sci(p.scientificName)}</span> ${esc(p.author || "")}`)}
               ${dl("국명", esc(p.koreanName) || "—")}
               ${dl("분류", esc([c.en, p.family, p.group, p.genus].filter(Boolean).join(" › ")))}
-              ${dl("원산지", esc(p.nativeRange || (p.origin || []).join(", ")))}
+              ${dl("Native", esc(p.nativeRange || (p.origin || []).join(", ")))}
               ${dl("서식지 환경", esc(p.habitat))}
               ${dl("해발고도", esc(p.elevation))}
               ${dl("채집자", esc(p.collector))}
