@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Archive — 식물과 비바리움의 시간을 기록합니다</title>
+<meta name="description" content="식물과 비바리움의 시간을 기록하고, 보관합니다. Time Archive">
+<meta name="theme-color" content="#537f21">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+<div id="header"></div>
+<main id="app">
+  <section class="hero"><div class="wrap">
+    <div>
+      <span class="eyebrow">Plants &amp; Vivarium Archive</span>
+      <h1>시간을 기록하고,<br><em>보관합니다.</em></h1>
+      <p>Time Archive는 식물과 비바리움이 지나온 시간을 사진으로 남기는 아카이브입니다. 한 장의 사진이 아니라, 쌓여가는 변화의 기록을 보관합니다.</p>
+      <div class="btns">
+        <a class="btn fill" href="plants.html">식물 아카이브 →</a>
+        <a class="btn" href="vivariums.html">비바리움 아카이브 →</a>
+      </div>
+    </div>
+    <img class="hero-logo" src="assets/img/logo.png" alt="Time Archive 로고 — 모래시계">
+  </div></section>
+
+  <section class="concept" aria-label="브랜드 소개">
+    <div><b>X</b><strong>모래시계, 그리고 Kai</strong><span>흐르는 시간을 담는 모래시계이자, 그리스 문자 카이(Χ)의 형상입니다.</span></div>
+    <div><b>T</b><strong>Time — 시간</strong><span>위쪽의 녹색 획. 식물이 자라며 지나가는 시간을 뜻합니다.</span></div>
+    <div><b>A</b><strong>Archive — 보관</strong><span>아래쪽의 검정 획. 그 시간을 기록으로 쌓아 보관합니다.</span></div>
+  </section>
+
+  <section class="section"><div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Plant Gallery</span><h2>식물 갤러리<small id="home-plants-count"></small></h2></div>
+      <a class="more" href="plants.html">전체 보기</a>
+    </div>
+    <div class="grid" id="home-plants"></div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Vivarium Gallery</span><h2>비바리움 갤러리<small id="home-vivs-count"></small></h2></div>
+      <a class="more" href="vivariums.html">전체 보기</a>
+    </div>
+    <div class="grid wide" id="home-vivs"></div>
+  </div></section>
+</main>
+<div id="footer"></div>
+<script src="data/plants.js"></script>
+<script src="data/vivariums.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
