@@ -287,6 +287,13 @@
     const photos = photosOf(p);
     const cv = photos[0];
     const inViv = VIVS.filter((v) => (v.plants || []).includes(p.id));
+    // 꽃 사진 탭 (난초만) — 꽃 사진은 메인 사진·업데이트순에 영향을 주지 않음
+    const hasFlowerTab = p.category === "orchid";
+    const flowers = hasFlowerTab ? p.flowers || [] : [];
+    const flowerGrid = flowers.length
+      ? `<div class="tl-grid">${flowers.map((f, i) => `<figure data-lb="${photos.length + i}"><div class="card-img"><img src="${esc(f.src)}" alt="${esc(f.caption || p.scientificName + " 꽃")}" loading="lazy"></div>${f.caption || f.credit ? `<figcaption>${esc(f.caption || "")}${f.credit ? `<span class="credit">사진 출처: ${esc(f.credit)}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`
+      : empty("아직 등록된 꽃 사진이 없습니다.");
+    const lbList = [...photos, ...flowers.map((f) => ({ src: f.src, date: f.date, caption: [f.caption, f.credit ? "사진 출처: " + f.credit : ""].filter(Boolean).join(" · ") }))];
     const powo = p.powo || `https://powo.science.kew.org/results?q=${encodeURIComponent(p.scientificName)}`;
     const dl = (k, v) => (v ? `<div><dt>${k}</dt><dd>${v}</dd></div>` : "");
 
@@ -315,7 +322,12 @@
             <div class="tags">${tagsOf(p).map((t) => chip(t)).join("")}</div>
             ${p.notes ? `<div class="note">${esc(p.notes)}</div>` : ""}
             ${p.sample ? `<div class="note">샘플 데이터입니다. 실제 등록 시 POWO 기준으로 다시 확인합니다.</div>` : ""}
-            <a class="ext" href="${esc(powo)}" target="_blank" rel="noopener">POWO에서 보기 ↗</a>
+            <div class="sources">
+              <h3>Sources · 출처</h3>
+              <ul>${((p.sources || []).length ? p.sources : [{ title: "Plants of the World Online (POWO)", url: powo }])
+                .map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || s.url)} ↗</a>` : esc(s.title)}${s.note ? `<span>${esc(s.note)}</span>` : ""}</li>`)
+                .join("")}</ul>
+            </div>
           </div>
         </div>
       </div>
@@ -328,7 +340,13 @@
       </div></section>` : ""}
       <section class="section"><div class="wrap">
         <div class="section-head"><div><span class="eyebrow">Time Archive</span><h2>시간의 기록<small>${photos.length} photos</small></h2></div></div>
-        ${timeline(photos)}
+        ${hasFlowerTab ? `
+        <div class="tabs" role="tablist">
+          <button class="tab on" role="tab" data-tab="time">기록 <span>${photos.length}</span></button>
+          <button class="tab" role="tab" data-tab="flower">꽃 <span>${flowers.length}</span></button>
+        </div>
+        <div data-pane="time">${timeline(photos)}</div>
+        <div data-pane="flower" hidden>${flowerGrid}</div>` : timeline(photos)}
       </div></section>
       ${inViv.length ? `
       <section class="section"><div class="wrap">
@@ -336,7 +354,13 @@
         <div class="grid wide">${inViv.map(vivCard).join("")}</div>
       </div></section>` : ""}`;
 
-    bindLightbox(app, photos);
+    bindLightbox(app, lbList);
+    const openTab = (name) => {
+      app.querySelectorAll(".tab").forEach((t) => t.classList.toggle("on", t.dataset.tab === name));
+      app.querySelectorAll("[data-pane]").forEach((el) => (el.hidden = el.dataset.pane !== name));
+    };
+    app.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => openTab(t.dataset.tab)));
+    if (hasFlowerTab && location.hash === "#flower") openTab("flower");
     if ((p.tdwg || []).length) drawMap($("#map"), p.tdwg);
   }
 
