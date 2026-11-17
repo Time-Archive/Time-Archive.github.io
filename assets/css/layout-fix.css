@@ -1,0 +1,17 @@
+/* Time Archive — 레이아웃 보정 (style.css 다음에 불러옵니다) */
+
+/* 상단 메뉴가 스크롤해도 화면 위에 붙어 있도록 수정.
+   (기존에는 메뉴가 스크롤과 함께 사라져서, 아카이브의 검색·분류 줄이 화면 중간에 떠 보였음) */
+#header { position: sticky; top: 0; z-index: 50; }
+.site-header { position: static; }
+
+@media (max-width: 760px) {
+  #header .site-header { background: #fff; }
+
+  /* 모바일: 스크롤하면 검색창은 메뉴 뒤로 숨고, 분류 버튼 한 줄만 메뉴 아래에 붙음 */
+  .toolbar { top: -2px; background: #fff; }            /* 메뉴 64px - 검색 줄 66px */
+  .toolbar .wrap { padding-top: 12px; padding-bottom: 10px; gap: 10px; }
+  .search { height: 44px; font-size: 16px; }           /* 16px: 아이폰에서 입력 시 화면이 확대되는 것 방지 */
+  .catnav .chip { padding: 6px 12px; }
+  .cat { scroll-margin-top: 128px; }
+}
