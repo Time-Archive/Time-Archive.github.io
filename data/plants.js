@@ -1,6 +1,6 @@
 /* 식물 데이터 — 식물 1종 = 항목 1개. 사진은 images/plants/<id>/ 에 넣고 photos 에 추가합니다.
    category: "orchid"(난초) | "fern"(양치식물) | "jungle"(정글플랜츠) | "aroid"(아로이드)
-   group = 중분류, genus = 소분류, origin = 원산지 태그(POWO 기준), tdwg = 지도용 WGSRPD Level 3 코드 */
+   group = 중분류(예: "Tribe Dendrobium"), genus = 소분류, origin = 원산지 태그(POWO 기준), tdwg = 지도용 WGSRPD Level 3 코드 */
 window.TA_PLANTS = [
   {
     id: "dendrobium-jenkinsii",
@@ -10,7 +10,7 @@ window.TA_PLANTS = [
     koreanName: "",
     category: "orchid",
     family: "Orchidaceae",
-    group: "Dendrobium족",
+    group: "Tribe Dendrobium",
     genus: "Dendrobium속",
     origin: ["S. China", "E. Himalayas", "Vietnam", "Thailand", "Laos", "Myanmar"],
     tdwg: ["CHC", "EHM", "VIE", "THA", "LAO", "MYA"],

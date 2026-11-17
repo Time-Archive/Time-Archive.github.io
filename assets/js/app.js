@@ -40,7 +40,7 @@
 
   // 식물 하나의 태그 목록: 대분류 / 중분류 / 소분류 / 원산지 / 채집자 / 기타
   const tagsOf = (p) => {
-    const t = [{ t: "cat", label: catOf(p.category).ko }];
+    const t = [{ t: "cat", label: catOf(p.category).en }];
     if (p.group) t.push({ t: "group", label: p.group });
     if (p.genus) t.push({ t: "genus", label: p.genus });
     (p.origin || []).forEach((o) => t.push({ t: "origin", label: o }));
@@ -60,7 +60,7 @@
     <a class="card" href="plant.html?id=${encodeURIComponent(p.id)}">
       <div class="card-img">${p.sample ? '<span class="badge">SAMPLE</span>' : ""}${imgOrPh(p, p.scientificName)}</div>
       <div class="card-body">
-        <span class="card-kicker">${esc([catOf(p.category).ko, p.genus].filter(Boolean).join(" · "))}</span>
+        <span class="card-kicker">${esc([catOf(p.category).en, p.genus].filter(Boolean).join(" · "))}</span>
         <h3 class="sci">${sci(p.scientificName)}</h3>
         <span class="card-meta">${esc([p.koreanName, fmtDate(updated(p))].filter(Boolean).join(" · "))}</span>
       </div>
@@ -185,10 +185,10 @@
       <div class="page-head"><div class="wrap">
         <span class="eyebrow">Plant Archive</span>
         <h1>식물 아카이브</h1>
-        <p>난초, 양치식물, 정글플랜츠, 아로이드. 종마다 쌓여가는 시간을 분류군별로 보관합니다.</p>
+        <p>Orchids, Ferns, Jungle Plants, Aroids. 종마다 쌓여가는 시간을 분류군별로 보관합니다.</p>
       </div></div>
       <div class="toolbar"><div class="wrap">
-        <div class="catnav">${CATS.map((c) => `<a class="chip dark" href="#${c.key}">${c.ko}<span class="n">${PLANTS.filter((p) => p.category === c.key).length}</span></a>`).join("")}</div>
+        <div class="catnav">${CATS.map((c) => `<a class="chip dark" href="#${c.key}">${c.en}<span class="n">${PLANTS.filter((p) => p.category === c.key).length}</span></a>`).join("")}</div>
         <input class="search" type="search" placeholder="학명 · 국명 · 태그 검색" aria-label="검색">
       </div></div>
       <div class="wrap">
@@ -228,7 +228,7 @@
           o.items.push(p);
         });
         return `<section class="cat" id="${c.key}">
-          <div class="cat-head"><span class="no">0${i + 1}</span><h2>${c.ko}</h2><span class="en">${c.en}</span><span class="count">${items.length}종</span></div>
+          <div class="cat-head"><span class="no">0${i + 1}</span><h2>${c.en}</h2><span class="count">${items.length}종</span></div>
           ${items.length ? groups.map((g) => `<div class="group-head">${esc(g.g)} <span>${g.items.length}</span></div><div class="grid">${g.items.map(plantCard).join("")}</div>`).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
         </section>`;
       }).join("") || `<div style="padding:48px 0">${empty("조건에 맞는 식물이 없습니다.")}</div>`;
@@ -291,20 +291,20 @@
 
     app.innerHTML = `
       <div class="wrap">
-        <div class="crumbs"><a href="plants.html">식물 아카이브</a><i>/</i><a href="plants.html#${c.key}">${c.ko}</a>${p.group ? `<i>/</i><a href="plants.html?tag=${encodeURIComponent(p.group)}">${esc(p.group)}</a>` : ""}</div>
+        <div class="crumbs"><a href="plants.html">식물 아카이브</a><i>/</i><a href="plants.html#${c.key}">${c.en}</a>${p.group ? `<i>/</i><a href="plants.html?tag=${encodeURIComponent(p.group)}">${esc(p.group)}</a>` : ""}</div>
         <div class="detail">
           <figure class="detail-photo" style="margin:0" ${cv ? 'data-lb="0"' : ""}>
             ${imgOrPh(p, p.scientificName)}${cv && cv.date ? `<figcaption>${fmtDate(cv.date)}</figcaption>` : ""}
           </figure>
           <div>
-            <span class="eyebrow">${c.ko} · ${c.en}</span>
+            <span class="eyebrow">${c.en}</span>
             <h1 class="sci">${sci(p.scientificName)}</h1>
             ${p.author ? `<div class="author">${esc(p.author)}</div>` : ""}
             ${p.koreanName ? `<p class="kname">${esc(p.koreanName)}</p>` : ""}
             <dl class="info">
               ${dl("학명", `<span class="sci" style="font-size:19px">${sci(p.scientificName)}</span> ${esc(p.author || "")}`)}
               ${dl("국명", esc(p.koreanName) || "—")}
-              ${dl("분류", esc([c.ko, p.family, p.group, p.genus].filter(Boolean).join(" › ")))}
+              ${dl("분류", esc([c.en, p.family, p.group, p.genus].filter(Boolean).join(" › ")))}
               ${dl("원산지", esc(p.nativeRange || (p.origin || []).join(", ")))}
               ${dl("서식지 환경", esc(p.habitat))}
               ${dl("해발고도", esc(p.elevation))}
