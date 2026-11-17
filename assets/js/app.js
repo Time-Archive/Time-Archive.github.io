@@ -83,7 +83,7 @@
     const on = (keys) => (keys.includes(page) ? "on" : "");
     $("#header").innerHTML = `
       <header class="site-header"><div class="wrap">
-        <a class="brand" href="index.html" aria-label="Time Archive 홈"><img src="assets/img/logo-trim.png" alt="Time Archive"></a>
+        <a class="brand" href="index.html" aria-label="Time Archive 홈"><img src="assets/img/logo-trim.png?v=10" alt="Time Archive"></a>
         <nav class="nav">
           <a class="${on(["home"])}" href="index.html">Home</a>
           <a class="${on(["plants", "plant"])}" href="plants.html">식물 아카이브</a>
