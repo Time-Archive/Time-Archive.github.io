@@ -26,3 +26,14 @@
   /* 모바일 비바리움 카드는 2열 */
   .grid.wide:has(.card.viv) { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* 큰 제목 크기 조정
+   - PC: 메인 섹션 제목(식물 아카이브·비바리움 아카이브)과 아카이브 대분류 제목(Orchids, 사이즈 등) 약 30% 축소
+   - 모바일: 메인은 그대로, 아카이브 대분류 제목만 약 15% 축소 */
+@media (min-width: 761px) {
+  .section-head h2 { font-size: clamp(22px, 2.52vw, 31px); } /* 기존 최대 44px */
+  .cat-head h2 { font-size: clamp(22px, 2.8vw, 34px); }      /* 기존 최대 48px */
+}
+@media (max-width: 760px) {
+  .cat-head h2 { font-size: 24px; }                           /* 기존 28px */
+}
