@@ -44,7 +44,8 @@
   const sci = (name) =>
     String(name || "")
       .split(/\s+/)
-      .map((w) => (/^(sp\.|spp\.|cf\.|aff\.|var\.|subsp\.|ssp\.|f\.|×|x)$/i.test(w) || /^['‘"(]/.test(w) || /['’")]$/.test(w) ? esc(w) : `<i>${esc(w)}</i>`))
+      // 교배종 이름(대문자로 시작하는 두 번째 이후 단어)과 'Cultivar' 는 정체
+      .map((w, i) => (/^(sp\.|spp\.|cf\.|aff\.|var\.|subsp\.|ssp\.|f\.|×|x)$/i.test(w) || /^['‘"(]/.test(w) || /['’")]$/.test(w) || (i > 0 && /^[A-Z]/.test(w)) ? esc(w) : `<i>${esc(w)}</i>`))
       .join(" ");
 
   // 식물 하나의 태그 목록: 대분류 / Tribe(중분류) / Genus(소분류) / Native(원산지) / 채집자 / 기타
@@ -305,9 +306,9 @@
     const hasFlowerTab = p.category === "orchid";
     const flowers = hasFlowerTab ? p.flowers || [] : [];
     const flowerGrid = flowers.length
-      ? `<div class="tl-grid">${flowers.map((f, i) => `<figure data-lb="${photos.length + i}"><div class="card-img"><img src="${esc(f.src)}" alt="${esc(f.caption || p.scientificName + " 꽃")}" loading="lazy"></div>${f.caption || f.credit ? `<figcaption>${esc(f.caption || "")}${f.credit ? `<span class="credit">사진 출처: ${esc(f.credit)}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`
+      ? `<div class="tl-grid">${flowers.map((f, i) => `<figure data-lb="${photos.length + i}"><div class="card-img"><img src="${esc(f.src)}" alt="${esc(f.caption || p.scientificName + " 꽃")}" loading="lazy"></div>${f.caption || f.credit ? `<figcaption>${esc(f.caption || "")}${f.credit ? `<span class="credit">사진: ${f.link ? `<a href="${esc(f.link)}" target="_blank" rel="noopener">${esc(f.credit)}</a>` : esc(f.credit)}${f.license ? ` · ${esc(f.license)}` : ""}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`
       : empty("아직 등록된 꽃 사진이 없습니다.");
-    const lbList = [...photos, ...flowers.map((f) => ({ src: f.src, date: f.date, caption: [f.caption, f.credit ? "사진 출처: " + f.credit : ""].filter(Boolean).join(" · ") }))];
+    const lbList = [...photos, ...flowers.map((f) => ({ src: f.src, date: f.date, caption: [f.caption, f.credit ? "사진: " + f.credit + (f.license ? " · " + f.license : "") : ""].filter(Boolean).join(" · ") }))];
     const powo = p.powo || `https://powo.science.kew.org/results?q=${encodeURIComponent(p.scientificName)}`;
     const dl = (k, v) => (v ? `<div><dt>${k}</dt><dd>${v}</dd></div>` : "");
 
