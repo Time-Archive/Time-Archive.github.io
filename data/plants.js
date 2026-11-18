@@ -4,7 +4,7 @@
    flowers = 난초 상세 페이지 "꽃" 탭 사진. credit(촬영자/출처), license, link(원본 페이지)를 적습니다. */
 window.TA_PLANTS = [
   {
-    id: "acianthera-bragae",
+    id: "ab",
     scientificName: "Acianthera bragae",
     author: "(Ruschi) F.Barros",
     koreanName: "아시안테라 브라가에",
@@ -26,7 +26,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Sarracenella_pubescens.jpg/960px-Sarracenella_pubescens.jpg", "caption": "이명 Sarracenella pubescens로 등록된 사진", "credit": "Dalton Holland Baptista", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Sarracenella_pubescens.jpg"}],
   },
   {
-    id: "aerangis-citrata",
+    id: "ac",
     scientificName: "Aerangis citrata",
     author: "(Thouars) Schltr.",
     koreanName: "에란기스 시트라타",
@@ -48,7 +48,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": "", "credit": "Time Archive (KAI)"}, {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Aerangis_citrata_Orchi_002.jpg/960px-Aerangis_citrata_Orchi_002.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_citrata_Orchi_002.jpg"}],
   },
   {
-    id: "aerangis-fastuosa",
+    id: "af",
     scientificName: "Aerangis fastuosa",
     author: "(Rchb.f.) Schltr.",
     koreanName: "에란기스 파스투오사",
@@ -70,7 +70,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Aerangis_fastuosa_Orchi_194.jpg/960px-Aerangis_fastuosa_Orchi_194.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_fastuosa_Orchi_194.jpg"}],
   },
   {
-    id: "aerangis-luteoalba",
+    id: "al",
     scientificName: "Aerangis luteoalba",
     author: "(Kraenzl.) Schltr.",
     koreanName: "에란기스 루테오알바",
@@ -92,7 +92,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg/960px-Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg", "caption": "var. rhodosticta", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg"}],
   },
   {
-    id: "bulbophyllum-barbigerum",
+    id: "bb",
     scientificName: "Bulbophyllum barbigerum",
     author: "Lindl.",
     koreanName: "벌보필름 바르비게륨",
@@ -114,7 +114,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Bulbophyllum_barbigerum_01.jpg/960px-Bulbophyllum_barbigerum_01.jpg", "caption": "", "credit": "Michael Wolf", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Bulbophyllum_barbigerum_01.jpg"}],
   },
   {
-    id: "bulbophyllum-moniliforme",
+    id: "bm",
     scientificName: "Bulbophyllum moniliforme",
     author: "E.C.Parish & Rchb.f.",
     koreanName: "벌보필름 모닐리포르메",
@@ -136,7 +136,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Bulbophyllum_moniliforme_110808a.jpg/960px-Bulbophyllum_moniliforme_110808a.jpg", "caption": "", "credit": "Іринка Хоменко", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Bulbophyllum_moniliforme_110808a.jpg"}],
   },
   {
-    id: "ceratostylis-philippinensis",
+    id: "cp",
     scientificName: "Ceratostylis philippinensis",
     author: "Rolfe",
     koreanName: "세라토스틸리스 필리피넨시스",
@@ -158,7 +158,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "clowesia-rebecca-northen-mikabi",
+    id: "crnm",
     scientificName: "Clowesia Rebecca Northen 'Mikabi'",
     author: "W.W.G. Moir, 1971",
     koreanName: "클로웨시아 Rebecca Northen 'Mikabi'",
@@ -180,7 +180,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "dendrobium-funiforme",
+    id: "df",
     scientificName: "Dendrobium funiforme",
     author: "Blume",
     koreanName: "덴드로비움 푸니포르메",
@@ -202,7 +202,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Dendrobium_funiforme_Blume%2C_Rumphia_4_40_%281849%29_%2849123286153%29.jpg/960px-Dendrobium_funiforme_Blume%2C_Rumphia_4_40_%281849%29_%2849123286153%29.jpg", "caption": "", "credit": "sunoochi", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_funiforme_Blume,_Rumphia_4_40_(1849)_(49123286153).jpg"}],
   },
   {
-    id: "dendrobium-jenkinsii",
+    id: "dj",
     scientificName: "Dendrobium jenkinsii",
     author: "Wall. ex Lindl.",
     koreanName: "덴드로비움 젠킨시",
@@ -224,7 +224,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Dendrobium_jenkinsii_-_Flickr_003_%28cropped%29.jpg/960px-Dendrobium_jenkinsii_-_Flickr_003_%28cropped%29.jpg", "caption": "", "credit": "Elena Gaillard", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_jenkinsii_-_Flickr_003_(cropped).jpg"}],
   },
   {
-    id: "dendrobium-lichenastrum",
+    id: "del",
     scientificName: "Dendrobium lichenastrum",
     author: "(F.Muell.) Rolfe",
     koreanName: "덴드로비움 리체나스트럼",
@@ -246,7 +246,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Dendrobium_lichenastrum_var._prenticei_-_detail.jpg/960px-Dendrobium_lichenastrum_var._prenticei_-_detail.jpg", "caption": "var. prenticei", "credit": "Reiny", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_lichenastrum_var._prenticei_-_detail.jpg"}],
   },
   {
-    id: "dendrobium-nitidicolle",
+    id: "dn",
     scientificName: "Dendrobium nitidicolle",
     author: "J.J.Sm.",
     koreanName: "덴드로비움 니티디콜레",
@@ -268,7 +268,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "dendrobium-parvulum-violet-blue",
+    id: "dpvb",
     scientificName: "Dendrobium parvulum 'Violet Blue'",
     author: "Rolfe",
     koreanName: "덴드로비움 파블럼 'Violet Blue'",
@@ -290,7 +290,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "dracula-lotax",
+    id: "drl",
     scientificName: "Dracula lotax",
     author: "(Luer) Luer",
     koreanName: "드라큘라 로탁스",
@@ -312,7 +312,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Dracula_lotax_Orchi_131.jpg/960px-Dracula_lotax_Orchi_131.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Dracula_lotax_Orchi_131.jpg"}],
   },
   {
-    id: "dryadella-cristata",
+    id: "dc",
     scientificName: "Dryadella cristata",
     author: "Luer & R.Escobar",
     koreanName: "드라이아델라 크리스타타",
@@ -334,7 +334,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Dryadella_cristata_Orchi_2013-03-30_015.jpg/960px-Dryadella_cristata_Orchi_2013-03-30_015.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Dryadella_cristata_Orchi_2013-03-30_015.jpg"}],
   },
   {
-    id: "dryadella-zebrina",
+    id: "dz",
     scientificName: "Dryadella zebrina",
     author: "(Porsch) Luer",
     koreanName: "드라이아델라 제브리나",
@@ -356,7 +356,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "images/plants/dryadella-zebrina/2026-03-30-01.jpg", "date": "2026-03-30", "caption": "", "credit": "Time Archive (KAI)"}, {"src": "images/plants/dryadella-zebrina/2026-03-30-02.jpg", "date": "2026-03-30", "caption": "", "credit": "Time Archive (KAI)"}],
   },
   {
-    id: "epidendrum-schlechterianum",
+    id: "es",
     scientificName: "Epidendrum schlechterianum",
     author: "Ames",
     koreanName: "에피덴드럼 슐렉테리아눔",
@@ -378,7 +378,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Epidendrum_schlechterianum_Ames%2C_Schedul._Orchid._7_9_%281924%29._%2850839451148%29.jpg/960px-Epidendrum_schlechterianum_Ames%2C_Schedul._Orchid._7_9_%281924%29._%2850839451148%29.jpg", "caption": "", "credit": "sunoochi", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Epidendrum_schlechterianum_Ames,_Schedul._Orchid._7_9_(1924)._(50839451148).jpg"}],
   },
   {
-    id: "masdevallia-sp-snow-bird",
+    id: "msb",
     scientificName: "Masdevallia sp. 'Snow Bird'",
     author: "",
     koreanName: "마스데발리아 sp. 'Snow Bird'",
@@ -400,7 +400,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "images/plants/masdevallia-sp-snow-bird/2026-03-30-01.jpg", "date": "2026-03-30", "caption": "", "credit": "Time Archive (KAI)"}],
   },
   {
-    id: "maxillaria-spilotantha",
+    id: "ms",
     scientificName: "Maxillaria spilotantha",
     author: "Rchb.f.",
     koreanName: "막실라리아 스필로탄사",
@@ -422,7 +422,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "maxillaria-vernicosa-black",
+    id: "mnb",
     scientificName: "Maxillaria neowiedii 'Black'",
     author: "Rchb.f.",
     koreanName: "막실라리아 베르니코사 'Black'",
@@ -444,7 +444,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "ornithocephalus-bicornis",
+    id: "ob",
     scientificName: "Ornithocephalus bicornis",
     author: "Lindl.",
     koreanName: "오니소세팔루스 비코르니스",
@@ -466,7 +466,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Ornithocephalus_bicornis_Orchi_038.jpg/960px-Ornithocephalus_bicornis_Orchi_038.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Ornithocephalus_bicornis_Orchi_038.jpg"}],
   },
   {
-    id: "phalaenopsis-pulcherrima",
+    id: "pp",
     scientificName: "Phalaenopsis pulcherrima",
     author: "(Lindl.) J.J.Sm.",
     koreanName: "팔레놉시스 풀체리마",
@@ -488,7 +488,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Phalaenopsis_pulcherrima_kz01.jpg/960px-Phalaenopsis_pulcherrima_kz01.jpg", "caption": "", "credit": "Krzysztof Ziarnek, Kenraiz", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Phalaenopsis_pulcherrima_kz01.jpg"}],
   },
   {
-    id: "phalaenopsis-pulcherrima-alba",
+    id: "ppa",
     scientificName: "Phalaenopsis pulcherrima 'Alba'",
     author: "",
     koreanName: "팔레놉시스 풀체리마 'Alba'",
@@ -510,7 +510,7 @@ window.TA_PLANTS = [
     flowers: [],
   },
   {
-    id: "sarcochilus-ceciliae",
+    id: "sc",
     scientificName: "Sarcochilus ceciliae",
     author: "F.Muell.",
     koreanName: "사르코칠러스 세실리에",
@@ -532,7 +532,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Sarcochilus_ceciliae_close_up.jpg/960px-Sarcochilus_ceciliae_close_up.jpg", "caption": "", "credit": "Geoff Derrin", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Sarcochilus_ceciliae_close_up.jpg"}],
   },
   {
-    id: "scaphosepalum-rapax",
+    id: "sr",
     scientificName: "Scaphosepalum rapax",
     author: "Luer",
     koreanName: "스카포세팔럼 라팍스",
@@ -554,7 +554,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Scaphosepalum_rapax_%2824900728713%29.jpg/960px-Scaphosepalum_rapax_%2824900728713%29.jpg", "caption": "", "credit": "Luis Pérez", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Scaphosepalum_rapax_(24900728713).jpg"}],
   },
   {
-    id: "schoenorchis-fragrans",
+    id: "sf",
     scientificName: "Schoenorchis fragrans",
     author: "(C.S.P.Parish & Rchb.f.) Seidenf. & Smitinand",
     koreanName: "쇼에노르키스 프라그란스",
@@ -576,7 +576,7 @@ window.TA_PLANTS = [
     flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Schoenorchis_fragrans.jpg/960px-Schoenorchis_fragrans.jpg", "caption": "", "credit": "Dalton Holland Baptista", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Schoenorchis_fragrans.jpg"}],
   },
   {
-    id: "tolumnia-hawkesiana",
+    id: "th",
     scientificName: "Tolumnia hawkesiana",
     author: "(Moir) Braem",
     koreanName: "톨룸니아 호크시아나",
