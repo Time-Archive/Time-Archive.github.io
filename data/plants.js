@@ -23,7 +23,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Wikipedia — Acianthera bragae", "url": "https://en.wikipedia.org/wiki/Acianthera_bragae", "note": "분포 · 서식지 · 해발고도"}, {"title": "World Flora Online — Acianthera bragae", "url": "https://list.worldfloraonline.org/wfo-0000273030", "note": "이명"}, {"title": "Paubrasilia — Acianthera bragae Bahia record", "url": "https://periodicos.ufsb.edu.br/index.php/paubrasilia/article/download/88/47/1482", "note": "분포"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/acianthera-bragae/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Sarracenella_pubescens.jpg/960px-Sarracenella_pubescens.jpg", "caption": "이명 Sarracenella pubescens로 등록된 사진", "credit": "Dalton Holland Baptista", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Sarracenella_pubescens.jpg"}],
   },
   {
     id: "aerangis-citrata",
@@ -45,7 +45,7 @@ window.TA_PLANTS = [
     sources: [{"title": "orchid.guru — Aerangis citrata", "url": "https://orchid.guru/content/orchids/a/aerangis/citrata", "note": "원산지 · 해발고도"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": ""}],
-    flowers: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": "", "credit": "Time Archive (KAI)"}],
+    flowers: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": "", "credit": "Time Archive (KAI)"}, {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Aerangis_citrata_Orchi_002.jpg/960px-Aerangis_citrata_Orchi_002.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_citrata_Orchi_002.jpg"}],
   },
   {
     id: "aerangis-fastuosa",
@@ -67,7 +67,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Aerangis fastuosa", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:615006-1", "note": "학명 · 원산지"}, {"title": "Orchids Wiki — Aerangis fastuosa", "url": "https://orchids.fandom.com/wiki/Aerangis_fastuosa", "note": "서식지 · 해발고도"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/aerangis-fastuosa/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Aerangis_fastuosa_Orchi_194.jpg/960px-Aerangis_fastuosa_Orchi_194.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_fastuosa_Orchi_194.jpg"}],
   },
   {
     id: "aerangis-luteoalba",
@@ -89,7 +89,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Wikipedia — Aerangis luteoalba", "url": "https://en.wikipedia.org/wiki/Aerangis_luteoalba", "note": "학명 · 변종별 분포"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/aerangis-luteoalba/2026-03-09-01.jpg", "date": "2026-03-09", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg/960px-Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg", "caption": "var. rhodosticta", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_luteoalba_var._rhodosticta_Orchi_2012-09-21_116.jpg"}],
   },
   {
     id: "bulbophyllum-barbigerum",
@@ -111,7 +111,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Bulbophyllum barbigerum", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:618399-1", "note": "학명 · 원산지"}, {"title": "Plantae Wiki — Bulbophyllum barbigerum", "url": "https://wiki.plantae.se/index.php/Sk%C3%A4ggbulbofyllum", "note": "서식지 · 해발고도"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/bulbophyllum-barbigerum/2026-03-17-01.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/bulbophyllum-barbigerum/2026-03-17-02.jpg", "date": "2026-03-17", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Bulbophyllum_barbigerum_01.jpg/960px-Bulbophyllum_barbigerum_01.jpg", "caption": "", "credit": "Michael Wolf", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Bulbophyllum_barbigerum_01.jpg"}],
   },
   {
     id: "bulbophyllum-moniliforme",
@@ -133,7 +133,7 @@ window.TA_PLANTS = [
     sources: [{"title": "eFlora of India — Bulbophyllum moniliforme (POWO 분포 인용)", "url": "https://efloraofindia.com/?p=1410386", "note": "학명 · 원산지"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/bulbophyllum-moniliforme/2026-03-17-01.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/bulbophyllum-moniliforme/2026-03-17-02.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/bulbophyllum-moniliforme/2026-03-17-03.jpg", "date": "2026-03-17", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Bulbophyllum_moniliforme_110808a.jpg/960px-Bulbophyllum_moniliforme_110808a.jpg", "caption": "", "credit": "Іринка Хоменко", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Bulbophyllum_moniliforme_110808a.jpg"}],
   },
   {
     id: "ceratostylis-philippinensis",
@@ -199,7 +199,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Orchids of New Guinea (Naturalis) — Cadetia funiformis", "url": "https://orchids.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?id=10627", "note": "분포 · 생육"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/dendrobium-funiforme/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Dendrobium_funiforme_Blume%2C_Rumphia_4_40_%281849%29_%2849123286153%29.jpg/960px-Dendrobium_funiforme_Blume%2C_Rumphia_4_40_%281849%29_%2849123286153%29.jpg", "caption": "", "credit": "sunoochi", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_funiforme_Blume,_Rumphia_4_40_(1849)_(49123286153).jpg"}],
   },
   {
     id: "dendrobium-jenkinsii",
@@ -221,7 +221,7 @@ window.TA_PLANTS = [
     sources: [{"title": "eFlora of India — Dendrobium jenkinsii (POWO 분포 인용)", "url": "https://efloraofindia.com/?p=1528369", "note": "학명 · 원산지"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/dendrobium-jenkinsii/2026-03-27-01.jpg", "date": "2026-03-27", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Dendrobium_jenkinsii_-_Flickr_003_%28cropped%29.jpg/960px-Dendrobium_jenkinsii_-_Flickr_003_%28cropped%29.jpg", "caption": "", "credit": "Elena Gaillard", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_jenkinsii_-_Flickr_003_(cropped).jpg"}],
   },
   {
     id: "dendrobium-lichenastrum",
@@ -243,7 +243,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Dendrobium lichenastrum", "url": "https://powo.science.kew.org/taxon/60453738-2", "note": "학명 · 원산지 · 생활형"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/dendrobium-lichenastrum/2026-03-23-01.jpg", "date": "2026-03-23", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Dendrobium_lichenastrum_var._prenticei_-_detail.jpg/960px-Dendrobium_lichenastrum_var._prenticei_-_detail.jpg", "caption": "var. prenticei", "credit": "Reiny", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Dendrobium_lichenastrum_var._prenticei_-_detail.jpg"}],
   },
   {
     id: "dendrobium-nitidicolle",
@@ -309,7 +309,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Dracula lotax", "url": "https://powo.science.kew.org/taxon/83993-2", "note": "학명 · 원산지"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/dracula-lotax/2026-03-23-01.jpg", "date": "2026-03-23", "caption": ""}, {"src": "images/plants/dracula-lotax/2026-03-17-01.jpg", "date": "2026-03-17", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Dracula_lotax_Orchi_131.jpg/960px-Dracula_lotax_Orchi_131.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Dracula_lotax_Orchi_131.jpg"}],
   },
   {
     id: "dryadella-cristata",
@@ -331,7 +331,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Flolape — Dryadella cristata", "url": "https://flolape.com/en/plants/dryadella-cristata", "note": "학명 · 분포"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/dryadella-cristata/2026-03-23-01.jpg", "date": "2026-03-23", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Dryadella_cristata_Orchi_2013-03-30_015.jpg/960px-Dryadella_cristata_Orchi_2013-03-30_015.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Dryadella_cristata_Orchi_2013-03-30_015.jpg"}],
   },
   {
     id: "dryadella-zebrina",
@@ -375,7 +375,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Epidendrum schlechterianum", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:297898-2", "note": "학명 · 원산지 · 생활형"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/epidendrum-schlechterianum/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}, {"src": "images/plants/epidendrum-schlechterianum/2026-03-30-02.jpg", "date": "2026-03-30", "caption": ""}, {"src": "images/plants/epidendrum-schlechterianum/2026-03-30-03.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Epidendrum_schlechterianum_Ames%2C_Schedul._Orchid._7_9_%281924%29._%2850839451148%29.jpg/960px-Epidendrum_schlechterianum_Ames%2C_Schedul._Orchid._7_9_%281924%29._%2850839451148%29.jpg", "caption": "", "credit": "sunoochi", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Epidendrum_schlechterianum_Ames,_Schedul._Orchid._7_9_(1924)._(50839451148).jpg"}],
   },
   {
     id: "masdevallia-sp-snow-bird",
@@ -463,7 +463,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Internet Orchid Species Photo Encyclopedia — Ornithocephalus bicornis", "url": "https://www.orchidspecies.com/orinthbicornis.htm", "note": "원산지 · 서식지 · 해발고도"}, {"title": "NYBG — Orchidaceae of the Guayana Highland", "url": "https://sweetgum.nybg.org/science/vh/monographs-details/?irn=38308", "note": "분포 (Ecuador)"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/ornithocephalus-bicornis/2026-03-17-01.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/ornithocephalus-bicornis/2026-03-17-02.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/ornithocephalus-bicornis/2026-03-17-03.jpg", "date": "2026-03-17", "caption": ""}, {"src": "images/plants/ornithocephalus-bicornis/2026-03-17-04.jpg", "date": "2026-03-17", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Ornithocephalus_bicornis_Orchi_038.jpg/960px-Ornithocephalus_bicornis_Orchi_038.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Ornithocephalus_bicornis_Orchi_038.jpg"}],
   },
   {
     id: "phalaenopsis-pulcherrima",
@@ -485,7 +485,7 @@ window.TA_PLANTS = [
     sources: [{"title": "Monaco Nature Encyclopedia — Phalaenopsis pulcherrima", "url": "https://monaconatureencyclopedia.com/phalaenopsis-pulcherrima-2/?lang=en", "note": "원산지 · 서식지"}, {"title": "MDWiki — Phalaenopsis pulcherrima (POWO 인용)", "url": "https://www.mdwiki.org/wiki/Phalaenopsis_pulcherrima", "note": "분포 범위"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/phalaenopsis-pulcherrima/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Phalaenopsis_pulcherrima_kz01.jpg/960px-Phalaenopsis_pulcherrima_kz01.jpg", "caption": "", "credit": "Krzysztof Ziarnek, Kenraiz", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Phalaenopsis_pulcherrima_kz01.jpg"}],
   },
   {
     id: "phalaenopsis-pulcherrima-alba",
@@ -529,7 +529,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Sarcochilus ceciliae", "url": "https://powo.science.kew.org/taxon/656526-1", "note": "학명 · 원산지 · 생활형"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/sarcochilus-ceciliae/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Sarcochilus_ceciliae_close_up.jpg/960px-Sarcochilus_ceciliae_close_up.jpg", "caption": "", "credit": "Geoff Derrin", "license": "CC BY-SA 4.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0", "link": "https://commons.wikimedia.org/wiki/File:Sarcochilus_ceciliae_close_up.jpg"}],
   },
   {
     id: "scaphosepalum-rapax",
@@ -551,7 +551,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Scaphosepalum rapax", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:228775-2", "note": "학명 · 원산지"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/scaphosepalum-rapax/2026-03-09-01.jpg", "date": "2026-03-09", "caption": ""}, {"src": "images/plants/scaphosepalum-rapax/2026-03-09-02.jpg", "date": "2026-03-09", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Scaphosepalum_rapax_%2824900728713%29.jpg/960px-Scaphosepalum_rapax_%2824900728713%29.jpg", "caption": "", "credit": "Luis Pérez", "license": "CC BY 2.0", "licenseUrl": "https://creativecommons.org/licenses/by/2.0", "link": "https://commons.wikimedia.org/wiki/File:Scaphosepalum_rapax_(24900728713).jpg"}],
   },
   {
     id: "schoenorchis-fragrans",
@@ -573,7 +573,7 @@ window.TA_PLANTS = [
     sources: [{"title": "POWO — Schoenorchis fragrans", "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:657402-1", "note": "학명 · 원산지 · 생활형"}],
     addedAt: "2026-11-18",
     photos: [{"src": "images/plants/schoenorchis-fragrans/2026-03-30-01.jpg", "date": "2026-03-30", "caption": ""}],
-    flowers: [],
+    flowers: [{"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Schoenorchis_fragrans.jpg/960px-Schoenorchis_fragrans.jpg", "caption": "", "credit": "Dalton Holland Baptista", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Schoenorchis_fragrans.jpg"}],
   },
   {
     id: "tolumnia-hawkesiana",

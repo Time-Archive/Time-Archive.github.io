@@ -37,3 +37,8 @@
 @media (max-width: 760px) {
   .cat-head h2 { font-size: 24px; }                           /* 기존 28px */
 }
+
+/* 꽃 탭: 외부(위키미디어) 사진은 잘라내지 않고 원본 비율 그대로 보여줌 */
+.tl-grid .card-img.flower { background: #111; }
+.tl-grid .card-img.flower img { object-fit: contain; }
+.credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
