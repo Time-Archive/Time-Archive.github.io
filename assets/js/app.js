@@ -163,11 +163,12 @@
   }
 
   /* ---------- HOME ---------- */
+  const HOME_COUNT = 8; // 메인 페이지에 보여줄 최신 항목 수 (식물·비바리움 각각)
   function home() {
     const plants = [...PLANTS].sort(byUpdated);
     const vivs = [...VIVS].sort(byUpdated);
-    $("#home-plants").innerHTML = plants.length ? plants.slice(0, 12).map(plantCard).join("") : empty("등록된 식물이 없습니다.");
-    $("#home-vivs").innerHTML = vivs.length ? vivs.slice(0, 6).map(vivCard).join("") : empty("등록된 비바리움이 없습니다.");
+    $("#home-plants").innerHTML = plants.length ? plants.slice(0, HOME_COUNT).map(plantCard).join("") : empty("등록된 식물이 없습니다.");
+    $("#home-vivs").innerHTML = vivs.length ? vivs.slice(0, HOME_COUNT).map(vivCard).join("") : empty("등록된 비바리움이 없습니다.");
     $("#home-plants-count").textContent = `${PLANTS.length} species`;
     $("#home-vivs-count").textContent = `${VIVS.length} vivariums`;
   }
