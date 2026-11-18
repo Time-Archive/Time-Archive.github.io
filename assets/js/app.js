@@ -481,3 +481,22 @@
   chrome(page);
   ({ home, plants, plant, vivariums, vivarium }[page] || (() => {}))();
 })();
+
+/* 사진 보호: 우클릭(저장·복사) 메뉴, 끌어서 저장, 모바일 길게 눌러 저장을 막습니다.
+   위키미디어 등 외부 라이선스 사진은 원작자 조건상 막지 않습니다. */
+(() => {
+  const own = (img) => img && img.tagName === "IMG" && new URL(img.currentSrc || img.src, location.href).origin === location.origin;
+  const target = (e) => {
+    const t = e.target;
+    if (own(t)) return t;
+    // 라이트박스·카드처럼 사진 위에 겹친 요소에서 우클릭한 경우
+    const img = t.closest && t.closest(".card-img, .detail-photo, .lb") ? t.closest(".card-img, .detail-photo, .lb").querySelector("img") : null;
+    return own(img) ? img : null;
+  };
+  document.addEventListener("contextmenu", (e) => { if (target(e)) e.preventDefault(); });
+  document.addEventListener("dragstart", (e) => { if (target(e)) e.preventDefault(); });
+  // 표시 직후 속성 지정 (끌기 방지)
+  const mark = () => document.querySelectorAll("img").forEach((img) => { if (own(img)) { img.draggable = false; img.classList.add("protected"); } });
+  new MutationObserver(mark).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["src"] });
+  mark();
+})();

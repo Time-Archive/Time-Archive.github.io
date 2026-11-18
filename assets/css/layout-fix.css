@@ -42,3 +42,6 @@
 .tl-grid .card-img.flower { background: #111; }
 .tl-grid .card-img.flower img { object-fit: contain; }
 .credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* 사진 보호: 길게 눌러 저장(iOS)·선택·끌기 방지 */
+img.protected { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
