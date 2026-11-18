@@ -1,22 +1,102 @@
 /* 비바리움 데이터 — 비바리움 1개 = 항목 1개. 사진은 images/vivariums/<id>/ 에 넣습니다.
-   plants: data/plants.js 의 식물 id 목록 (상세 페이지에서 서로 연결됩니다) */
+   id·name = 사이즈코드-순번 (예: 202045-001), size = 비바리움 아카이브의 사이즈별 분류 기준
+   startedAt = 제작일, plants = data/plants.js 의 식물 id 목록 */
 window.TA_VIVARIUMS = [
   {
-    id: "sample-vivarium",
-    sample: true, // 실제 등록 시 이 항목을 교체
-    name: "Sample Vivarium",
-    type: "Paludarium",
-    size: "45 × 45 × 60 cm",
-    startedAt: "2026-11-17",
+    id: "202045-001",
+    name: "202045-001",
+    no: "001",
+    type: "",
+    size: "20 × 20 × 45 cm",
+    startedAt: "2026-09-09", // 제작일
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["dendrobium-jenkinsii"],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
-    addedAt: "2026-11-17",
+    addedAt: "2026-11-18",
     photos: [
-      // { src: "images/vivariums/sample-vivarium/2026-11-17-01.jpg", date: "2026-11-17", caption: "세팅 직후" },
+      { src: "images/vivariums/202045-001/2026-11-17-front.jpg", date: "2026-11-17", caption: "정면" },
+      { src: "images/vivariums/202045-001/2026-11-17-side.jpg", date: "2026-11-17", caption: "측면" },
+    ],
+  },
+  {
+    id: "202045-002",
+    name: "202045-002",
+    no: "002",
+    type: "",
+    size: "20 × 20 × 45 cm",
+    startedAt: "2026-11-13", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-18",
+    photos: [
+      { src: "images/vivariums/202045-002/2026-11-17-front.jpg", date: "2026-11-17", caption: "정면" },
+      { src: "images/vivariums/202045-002/2026-11-17-side-1.jpg", date: "2026-11-17", caption: "측면 1" },
+      { src: "images/vivariums/202045-002/2026-11-17-side-2.jpg", date: "2026-11-17", caption: "측면 2" },
+    ],
+  },
+  {
+    id: "202045-003",
+    name: "202045-003",
+    no: "003",
+    type: "",
+    size: "20 × 20 × 45 cm",
+    startedAt: "2026-11-13", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-18",
+    photos: [
+      { src: "images/vivariums/202045-003/2026-11-17-front.jpg", date: "2026-11-17", caption: "정면" },
+      { src: "images/vivariums/202045-003/2026-11-17-side-1.jpg", date: "2026-11-17", caption: "측면 1" },
+      { src: "images/vivariums/202045-003/2026-11-17-side-2.jpg", date: "2026-11-17", caption: "측면 2" },
+    ],
+  },
+  {
+    id: "303045-001",
+    name: "303045-001",
+    no: "001",
+    type: "",
+    size: "30 × 30 × 45 cm",
+    startedAt: "2026-10-08", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-18",
+    photos: [
+      { src: "images/vivariums/303045-001/2026-11-17-front.jpg", date: "2026-11-17", caption: "정면" },
+      { src: "images/vivariums/303045-001/2026-11-17-side.jpg", date: "2026-11-17", caption: "측면" },
+    ],
+  },
+  {
+    id: "303045-002",
+    name: "303045-002",
+    no: "002",
+    type: "",
+    size: "30 × 30 × 45 cm",
+    startedAt: "2026-10-30", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-18",
+    photos: [
+      { src: "images/vivariums/303045-002/2026-11-17-front.jpg", date: "2026-11-17", caption: "정면" },
+      { src: "images/vivariums/303045-002/2026-11-17-side.jpg", date: "2026-11-17", caption: "측면" },
     ],
   },
 ];

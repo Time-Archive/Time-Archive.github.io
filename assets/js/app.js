@@ -29,7 +29,16 @@
   const cover = (it) => photosOf(it)[0] || null; // 메인 사진 = 가장 최근 업로드
   const updated = (it) => (cover(it) && cover(it).date) || it.addedAt || "";
   const byUpdated = (a, b) => String(updated(b)).localeCompare(String(updated(a)));
-  const cmp = (a, b) => String(a || "").localeCompare(String(b || ""), "en", { sensitivity: "base" });
+  const cmp = (a, b) => String(a || "").localeCompare(String(b || ""), "en", { sensitivity: "base", numeric: true });
+
+  // 비바리움 사이즈: "20 × 20 × 45 cm" → 정렬용 부피 (작은 사이즈부터)
+  const UNSIZED = "사이즈 미상";
+  const sizeOf = (v) => v.size || UNSIZED;
+  const sizeVol = (s) => {
+    const n = String(s).match(/\d+(\.\d+)?/g);
+    return n ? n.reduce((a, x) => a * Number(x), 1) : Infinity;
+  };
+  const sizeSlug = (s) => "size-" + (String(s).match(/\d+/g) || ["na"]).join("x");
 
   // 학명 이탤릭 처리 (sp., cf., var. 및 'Cultivar' 는 정체)
   const sci = (name) =>
@@ -67,12 +76,12 @@
     </a>`;
 
   const vivCard = (v) => `
-    <a class="card" href="vivarium.html?id=${encodeURIComponent(v.id)}">
+    <a class="card viv" href="vivarium.html?id=${encodeURIComponent(v.id)}">
       <div class="card-img">${v.sample ? '<span class="badge">SAMPLE</span>' : ""}${imgOrPh(v, v.name)}</div>
       <div class="card-body">
         <span class="card-kicker">${esc([v.type, v.size].filter(Boolean).join(" · ") || "Vivarium")}</span>
         <h3 class="plain">${esc(v.name)}</h3>
-        <span class="card-meta">${esc([v.startedAt ? "세팅 " + fmtDate(v.startedAt) : "", updated(v) ? "업데이트 " + fmtDate(updated(v)) : ""].filter(Boolean).join(" · "))}</span>
+        <span class="card-meta">${esc([v.startedAt ? "제작 " + fmtDate(v.startedAt) : "", updated(v) ? "업데이트 " + fmtDate(updated(v)) : ""].filter(Boolean).join(" · "))}</span>
       </div>
     </a>`;
 
@@ -369,19 +378,54 @@
     if ((p.tdwg || []).length) drawMap($("#map"), p.tdwg);
   }
 
-  /* ---------- VIVARIUMS ---------- */
+  /* ---------- VIVARIUMS (사이즈별) ---------- */
   function vivariums() {
-    const list = [...VIVS].sort(byUpdated);
-    $("#app").innerHTML = `
+    const app = $("#app");
+    // 사이즈 목록: 작은 사이즈부터
+    const sizes = [...new Set(VIVS.map(sizeOf))].sort((a, b) => sizeVol(a) - sizeVol(b) || cmp(a, b));
+    let cur = sizes.includes(param("size")) ? param("size") : "";
+
+    app.innerHTML = `
       <div class="page-head"><div class="wrap">
         <span class="eyebrow">Vivarium Archive</span>
         <h1>비바리움 아카이브</h1>
         <p>세팅한 날부터 지금까지. 작은 생태계가 자리 잡아가는 과정을 기록합니다.</p>
       </div></div>
-      <section class="section"><div class="wrap">
-        <div class="section-head"><span class="count">${list.length} vivariums · 업데이트순</span></div>
-        ${list.length ? `<div class="grid wide">${list.map(vivCard).join("")}</div>` : empty("등록된 비바리움이 없습니다.")}
-      </div></section>`;
+      <div class="toolbar"><div class="wrap">
+        <div class="catnav" role="tablist" aria-label="사이즈">
+          <button class="chip dark" data-size="">전체<span class="n">${VIVS.length}</span></button>
+          ${sizes.map((s) => `<button class="chip dark" data-size="${esc(s)}">${esc(s)}<span class="n">${VIVS.filter((v) => sizeOf(v) === s).length}</span></button>`).join("")}
+        </div>
+      </div></div>
+      <div class="wrap"><div id="sizes"></div></div>`;
+
+    function draw() {
+      app.querySelectorAll("[data-size]").forEach((b) => b.classList.toggle("on", b.dataset.size === cur));
+      const show = cur ? [cur] : sizes;
+      $("#sizes").innerHTML = show.length
+        ? show.map((s, i) => {
+            // 같은 사이즈 안에서는 순번(id) 순
+            const items = VIVS.filter((v) => sizeOf(v) === s).sort((a, b) => cmp(a.no || a.id, b.no || b.id));
+            return `<section class="cat" id="${sizeSlug(s)}">
+              <div class="cat-head"><span class="no">${String(sizes.indexOf(s) + 1).padStart(2, "0")}</span><h2>${esc(s)}</h2><span class="count">${items.length}개</span></div>
+              <div class="grid wide" style="margin-top:26px">${items.map(vivCard).join("")}</div>
+            </section>`;
+          }).join("")
+        : `<div style="padding:48px 0">${empty("등록된 비바리움이 없습니다.")}</div>`;
+    }
+
+    app.querySelector(".catnav").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-size]");
+      if (!b) return;
+      cur = b.dataset.size;
+      const url = new URL(location.href);
+      if (cur) url.searchParams.set("size", cur); else url.searchParams.delete("size");
+      history.replaceState(null, "", url);
+      draw();
+      const top = $("#sizes").getBoundingClientRect().top + scrollY - 140;
+      if (scrollY > top) scrollTo({ top, behavior: "smooth" });
+    });
+    draw();
   }
 
   function vivarium() {
@@ -395,9 +439,9 @@
     const dl = (k, val) => (val ? `<div><dt>${k}</dt><dd>${val}</dd></div>` : "");
     app.innerHTML = `
       <div class="wrap">
-        <div class="crumbs"><a href="vivariums.html">비바리움 아카이브</a><i>/</i>${esc(v.name)}</div>
+        <div class="crumbs"><a href="vivariums.html">비바리움 아카이브</a><i>/</i>${v.size ? `<a href="vivariums.html?size=${encodeURIComponent(v.size)}">${esc(v.size)}</a><i>/</i>` : ""}${esc(v.name)}</div>
         <div class="detail">
-          <figure class="detail-photo" style="margin:0;aspect-ratio:4/3" ${cv ? 'data-lb="0"' : ""}>
+          <figure class="detail-photo viv" style="margin:0" ${cv ? 'data-lb="0"' : ""}>
             ${imgOrPh(v, v.name)}${cv && cv.date ? `<figcaption>${fmtDate(cv.date)}</figcaption>` : ""}
           </figure>
           <div>
@@ -406,7 +450,7 @@
             <dl class="info">
               ${dl("타입", esc(v.type))}
               ${dl("크기", esc(v.size))}
-              ${dl("세팅일", fmtDate(v.startedAt))}
+              ${dl("제작일", fmtDate(v.startedAt))}
               ${dl("조명", esc(v.lighting))}
               ${dl("환경", esc(v.environment))}
               ${dl("생물", esc((v.inhabitants || []).join(", ")))}
