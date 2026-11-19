@@ -59,8 +59,9 @@
     (p.tags || []).forEach((x) => t.push({ t: "tag", label: x }));
     return t;
   };
-  // 아카이브 목록의 묶음 단위: Jungle Plants는 속(Genus)별, 속이 없으면 과(Family)별 / 나머지는 Tribe·Family별
-  const groupOf = (p) => (p.category === "jungle" ? p.genus || p.group : p.group);
+  // 아카이브 목록의 묶음 단위: Jungle Plants·Aroids는 속(Genus)별(속이 없으면 과), Orchids·Ferns는 Tribe·Family → Genus 2단계
+  const BY_GENUS = ["jungle", "aroid"]; // 속별로 바로 묶는 대분류
+  const groupOf = (p) => (BY_GENUS.includes(p.category) ? p.genus || p.group : p.group);
   const chip = (tag, extra = "") =>
     `<a class="chip ${extra}" data-t="${tag.t}" data-l="${esc(tag.label)}" href="plants.html?tag=${encodeURIComponent(tag.label)}">${esc(tag.label)}${tag.n ? `<span class="n">${tag.n}</span>` : ""}</a>`;
 
@@ -225,6 +226,18 @@
       return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
     };
 
+    // 소분류: 중분류(Tribe·Family) 안에서 속(Genus)별로 한 번 더 묶기 (속 이름 abc 순, 그 안은 학명 abc 순)
+    const genusBlocks = (items) => {
+      const gs = [];
+      items.forEach((p) => {
+        const k = String(p.genus || "").replace(/^Genus\s+/, "") || "미분류";
+        let o = gs.find((x) => x.k === k);
+        if (!o) gs.push((o = { k, items: [] }));
+        o.items.push(p);
+      });
+      return gs.map((o) => `<div class="genus-block"><div class="genus-head"><small>Genus</small><i>${esc(o.k)}</i><span>${o.items.length}</span></div><div class="grid">${o.items.map(plantCard).join("")}</div></div>`).join("");
+    };
+
     function draw() {
       const list = PLANTS.filter(match);
       $("#active").innerHTML = state.tag || state.q
@@ -249,7 +262,7 @@
         });
         return `<section class="cat" id="${c.key}">
           <div class="cat-head"><span class="no">0${i + 1}</span><h2>${c.en}</h2><span class="count">${items.length}종</span></div>
-          ${items.length ? groups.map((g) => `<div class="group-head">${esc(g.g)} <span>${g.items.length}</span></div><div class="grid">${g.items.map(plantCard).join("")}</div>`).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
+          ${items.length ? groups.map((g) => `<div class="group-head">${esc(g.g)} <span>${g.items.length}</span></div>${BY_GENUS.includes(c.key) ? `<div class="grid">${g.items.map(plantCard).join("")}</div>` : genusBlocks(g.items)}`).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
         </section>`;
       }).join("") || `<div style="padding:48px 0">${empty("조건에 맞는 식물이 없습니다.")}</div>`;
     }

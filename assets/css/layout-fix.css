@@ -49,3 +49,17 @@ img.protected { -webkit-touch-callout: none; -webkit-user-select: none; user-sel
 /* 산지(Locality) 태그 표시 */
 .chip[data-t="locality"]::before { content: "⌖"; font-size: 11px; color: var(--green); }
 .chip.on[data-t="locality"]::before { color: #fff; }
+
+/* 식물 아카이브 소분류(속): 중분류(Tribe·Family) 아래에 한 단계 작게 */
+.group-head { margin-top: 44px; font-size: 14px; }
+.cat-head + .group-head { margin-top: 28px; }
+.genus-block + .genus-block { margin-top: 26px; }
+.genus-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 12px; }
+.genus-head small { font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gray-3); }
+.genus-head i { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--green); line-height: 1.1; }
+.genus-head span { font-size: 12px; color: var(--gray-3); }
+@media (max-width: 760px) {
+  .group-head { margin-top: 34px; font-size: 13px; }
+  .genus-block + .genus-block { margin-top: 20px; }
+  .genus-head i { font-size: 18px; }
+}
