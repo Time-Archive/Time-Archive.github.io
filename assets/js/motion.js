@@ -14,7 +14,7 @@
   const SEL = [
     ".hero .eyebrow", ".hero h1", ".hero p", ".hero .btns", ".hero-logo",
     ".concept > div", ".section-head", ".card", ".page-head .wrap > *",
-    ".tagpanel", ".cat-head", ".group-head", ".crumbs", ".detail > *",
+    ".tagpanel", ".cat-head", ".group-head", ".genus-head", ".crumbs", ".detail > *",
     ".map-box", ".tabs", ".tl-date", ".tl-grid figure", ".empty",
     ".site-footer .wrap > *",
   ].join(",");
