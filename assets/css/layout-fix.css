@@ -45,3 +45,7 @@
 
 /* 사진 보호: 길게 눌러 저장(iOS)·선택·끌기 방지 */
 img.protected { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+
+/* 산지(Locality) 태그 표시 */
+.chip[data-t="locality"]::before { content: "⌖"; font-size: 11px; color: var(--green); }
+.chip.on[data-t="locality"]::before { color: #fff; }

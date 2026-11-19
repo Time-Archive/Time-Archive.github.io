@@ -1,4 +1,4 @@
-/* Time Archive — 데이터(data/plants.js, data/vivariums.js)를 읽어 모든 페이지를 그립니다. */
+/* Time Archive — 데이터(data/plants*.js, data/vivariums.js)를 읽어 모든 페이지를 그립니다. */
 (() => {
   "use strict";
   const PLANTS = window.TA_PLANTS || [];
@@ -40,20 +40,21 @@
   };
   const sizeSlug = (s) => "size-" + (String(s).match(/\d+/g) || ["na"]).join("x");
 
-  // 학명 이탤릭 처리 (sp., cf., var. 및 'Cultivar' 는 정체)
+  // 학명 이탤릭 처리
+  // 정체로 두는 것: sp. · var. 등 표기, 'Cultivar', 교배종 이름(대문자로 시작하는 두 번째 이후 단어), 과 이름(-aceae)
   const sci = (name) =>
     String(name || "")
       .split(/\s+/)
-      // 교배종 이름(대문자로 시작하는 두 번째 이후 단어)과 'Cultivar' 는 정체
-      .map((w, i) => (/^(sp\.|spp\.|cf\.|aff\.|var\.|subsp\.|ssp\.|f\.|×|x)$/i.test(w) || /^['‘"(]/.test(w) || /['’")]$/.test(w) || (i > 0 && /^[A-Z]/.test(w)) ? esc(w) : `<i>${esc(w)}</i>`))
+      .map((w, i) => (/^(sp\.|spp\.|cf\.|aff\.|var\.|subsp\.|ssp\.|f\.|×|x)$/i.test(w) || /^['‘"(]/.test(w) || /['’")]$/.test(w) || (i > 0 && /^[A-Z]/.test(w)) || /aceae$/.test(w) ? esc(w) : `<i>${esc(w)}</i>`))
       .join(" ");
 
-  // 식물 하나의 태그 목록: 대분류 / Tribe(중분류) / Genus(소분류) / Native(원산지) / 채집자 / 기타
+  // 식물 하나의 태그 목록: 대분류 / Tribe·Family(중분류) / Genus(소분류) / Native(원산지) / Locality(산지) / 채집자 / 기타
   const tagsOf = (p) => {
     const t = [{ t: "cat", label: catOf(p.category).en }];
     if (p.group) t.push({ t: "group", label: p.group });
     if (p.genus) t.push({ t: "genus", label: p.genus });
     (p.origin || []).forEach((o) => t.push({ t: "origin", label: o }));
+    if (p.locality) t.push({ t: "locality", label: p.locality });
     if (p.collector) t.push({ t: "collector", label: p.collector });
     (p.tags || []).forEach((x) => t.push({ t: "tag", label: x }));
     return t;
@@ -204,9 +205,10 @@
       </div></div>
       <div class="wrap">
         <div class="tagpanel">
-          ${row("Tribe", ["group"], true)}
+          ${row("Tribe · Family", ["group"], true)}
           ${row("Genus", ["genus"], false)}
           ${row("Native", ["origin"], false)}
+          ${row("Locality", ["locality"], false)}
           ${row("채집자 · 기타", ["collector", "tag"], false)}
         </div>
         <div id="active"></div>
@@ -233,7 +235,7 @@
       });
 
       $("#cats").innerHTML = CATS.map((c, i) => {
-        // 중분류(Tribe) → 소분류(Genus) → 학명 abc 순
+        // 중분류(Tribe / Family) → 소분류(Genus) → 학명 abc 순
         const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(a.group, b.group) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
         if (!items.length && (state.tag || state.q)) return "";
         const groups = [];
@@ -303,8 +305,8 @@
     const photos = photosOf(p);
     const cv = photos[0];
     const inViv = VIVS.filter((v) => (v.plants || []).includes(p.id));
-    // 꽃 사진 탭 (난초만) — 꽃 사진은 메인 사진·업데이트순에 영향을 주지 않음
-    const hasFlowerTab = p.category === "orchid";
+    // 꽃 사진 탭 (난초 또는 꽃 사진이 있는 식물) — 꽃 사진은 메인 사진·업데이트순에 영향을 주지 않음
+    const hasFlowerTab = p.category === "orchid" || (p.flowers || []).length > 0;
     const flowers = hasFlowerTab ? p.flowers || [] : [];
     const flowerGrid = flowers.length
       ? `<div class="tl-grid">${flowers.map((f, i) => `<figure data-lb="${photos.length + i}"><div class="card-img flower"><img src="${esc(f.src)}" alt="${esc(f.caption || p.scientificName + " 꽃")}" loading="lazy"></div>${f.caption || f.credit ? `<figcaption>${esc(f.caption || "")}${f.credit ? `<span class="credit">사진: ${esc(f.credit)}${f.license ? ` · ${f.licenseUrl ? `<a href="${esc(f.licenseUrl)}" target="_blank" rel="noopener">${esc(f.license)}</a>` : esc(f.license)}` : ""}${f.link ? ` · <a href="${esc(f.link)}" target="_blank" rel="noopener">원본</a>` : ""}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`
@@ -312,6 +314,11 @@
     const lbList = [...photos, ...flowers.map((f) => ({ src: f.src, date: f.date, caption: [f.caption, f.credit ? "사진: " + f.credit + (f.license ? " · " + f.license : "") : ""].filter(Boolean).join(" · ") }))];
     const powo = p.powo || `https://powo.science.kew.org/results?q=${encodeURIComponent(p.scientificName)}`;
     const dl = (k, v) => (v ? `<div><dt>${k}</dt><dd>${v}</dd></div>` : "");
+
+    // 지도: 자생지(POWO)가 있으면 자생지, 없으면(sp. 등) 이 개체의 산지
+    const nativeMap = (p.tdwg || []).length > 0;
+    const mapCodes = nativeMap ? p.tdwg : p.localityTdwg || [];
+    const mapText = nativeMap ? p.nativeRange || (p.origin || []).join(", ") : p.locality;
 
     app.innerHTML = `
       <div class="wrap">
@@ -328,11 +335,12 @@
             <dl class="info">
               ${dl("학명", `<span class="sci" style="font-size:19px">${sci(p.scientificName)}</span> ${esc(p.author || "")}`)}
               ${dl("국명", esc(p.koreanName) || "—")}
-              ${dl("분류", esc([c.en, p.family, p.group, p.genus].filter(Boolean).join(" › ")))}
+              ${dl("분류", esc([c.en, p.group && p.family && p.group.includes(p.family) ? "" : p.family, p.group, p.genus].filter(Boolean).join(" › ")))}
               ${dl("Native", esc(p.nativeRange || (p.origin || []).join(", ")))}
+              ${dl("산지", esc(p.locality))}
               ${dl("서식지 환경", esc(p.habitat))}
               ${dl("해발고도", esc(p.elevation))}
-              ${dl("채집자", esc(p.collector))}
+              ${dl("채집자 · 번호", esc(p.collector))}
               ${dl("최근 기록", fmtDate(updated(p)))}
             </dl>
             <div class="tags">${tagsOf(p).map((t) => chip(t)).join("")}</div>
@@ -347,11 +355,11 @@
           </div>
         </div>
       </div>
-      ${(p.tdwg || []).length ? `
+      ${mapCodes.length ? `
       <section class="section"><div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Native Range</span><h2>서식지 분포</h2></div></div>
+        <div class="section-head"><div><span class="eyebrow">${nativeMap ? "Native Range" : "Locality"}</span><h2>${nativeMap ? "서식지 분포" : "산지"}</h2></div></div>
         <div class="map-box"><div id="map"></div>
-          <div class="map-foot"><span class="key">Native</span><span id="map-status">${esc(p.nativeRange || (p.origin || []).join(", "))}</span><span class="src">Source: POWO / WGSRPD Level 3</span></div>
+          <div class="map-foot"><span class="key">${nativeMap ? "Native" : "산지"}</span><span id="map-status">${esc(mapText)}</span><span class="src">${nativeMap ? "Source: POWO / WGSRPD Level 3" : "산지가 속한 지역 (WGSRPD Level 3)"}</span></div>
         </div>
       </div></section>` : ""}
       <section class="section"><div class="wrap">
@@ -377,7 +385,7 @@
     };
     app.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => openTab(t.dataset.tab)));
     if (hasFlowerTab && location.hash === "#flower") openTab("flower");
-    if ((p.tdwg || []).length) drawMap($("#map"), p.tdwg);
+    if (mapCodes.length) drawMap($("#map"), mapCodes);
   }
 
   /* ---------- VIVARIUMS (사이즈별) ---------- */
