@@ -218,6 +218,7 @@
         <div id="cats"></div>
       </div>`;
 
+    const closed = new Set(); // 접어 둔 대분류·중분류 키
     const match = (p) => {
       const tags = tagsOf(p).map((t) => t.label);
       if (state.tag && !tags.includes(state.tag)) return false;
@@ -260,13 +261,33 @@
           if (!o) groups.push((o = { g, items: [] }));
           o.items.push(p);
         });
+        const ck = "cat:" + c.key;
         return `<section class="cat" id="${c.key}">
-          <div class="cat-head"><span class="no">0${i + 1}</span><h2>${c.en}</h2><span class="count">${items.length}종</span></div>
-          ${items.length ? groups.map((g) => `<div class="group-head">${esc(g.g)} <span>${g.items.length}</span></div>${BY_GENUS.includes(c.key) ? `<div class="grid">${g.items.map(plantCard).join("")}</div>` : genusBlocks(g.items)}`).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
+          <details class="fold cat-fold" data-k="${esc(ck)}" ${closed.has(ck) ? "" : "open"}>
+          <summary class="cat-head"><span class="no">0${i + 1}</span><h2>${c.en}</h2><span class="count">${items.length}종</span><i class="fold-ico" aria-hidden="true"></i></summary>
+          <div class="cat-body">
+          ${items.length ? groups.map((g) => {
+            const gk = "grp:" + c.key + ":" + g.g;
+            return `<details class="fold grp-fold" data-k="${esc(gk)}" ${closed.has(gk) ? "" : "open"}><summary class="group-head">${esc(g.g)} <span>${g.items.length}</span></summary>${BY_GENUS.includes(c.key) ? `<div class="grid">${g.items.map(plantCard).join("")}</div>` : genusBlocks(g.items)}</details>`;
+          }).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
+          </div>
+          </details>
         </section>`;
       }).join("") || `<div style="padding:48px 0">${empty("조건에 맞는 식물이 없습니다.")}</div>`;
     }
 
+    // 대분류·중분류 접기/펼치기: 검색·태그로 다시 그려도 접어 둔 상태 유지 (기본은 모두 펼침)
+    $("#cats").addEventListener("toggle", (e) => {
+      const d = e.target;
+      if (!d.matches || !d.matches("details.fold")) return;
+      if (d.open) closed.delete(d.dataset.k); else closed.add(d.dataset.k);
+    }, true);
+    // 상단 분류 버튼을 누르면 해당 대분류를 펼침
+    $(".catnav", app).addEventListener("click", (e) => {
+      const a = e.target.closest("a[href^='#']");
+      const d = a && document.querySelector(a.getAttribute("href") + " > details.fold");
+      if (d) d.open = true;
+    });
     $(".search", app).addEventListener("input", (e) => { state.q = e.target.value.trim(); draw(); });
     draw();
   }

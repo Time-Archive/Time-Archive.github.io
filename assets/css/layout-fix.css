@@ -63,3 +63,19 @@ img.protected { -webkit-touch-callout: none; -webkit-user-select: none; user-sel
   .genus-block + .genus-block { margin-top: 20px; }
   .genus-head i { font-size: 18px; }
 }
+
+/* 대분류·중분류 접기/펼치기 (태그 패널과 같은 방식, 기본은 펼침) */
+details.fold > summary { list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+details.fold > summary::-webkit-details-marker { display: none; }
+.cat-fold > summary.cat-head { user-select: none; }
+.cat-head .fold-ico { width: 22px; height: 22px; display: inline-grid; place-items: center; align-self: center; color: var(--gray-3); transition: transform .2s, color .2s; }
+.cat-head .fold-ico::before { content: "▾"; font-style: normal; font-size: 15px; line-height: 1; }
+.cat-fold:not([open]) > summary .fold-ico { transform: rotate(-90deg); }
+.cat-fold > summary:hover .fold-ico, .cat-fold > summary:hover h2 { color: var(--green); }
+.grp-fold > summary.group-head { user-select: none; }
+.grp-fold > summary.group-head::before { content: "▾"; font-size: 11px; color: var(--gray-3); width: 10px; transition: transform .2s; }
+.grp-fold:not([open]) > summary.group-head::before { transform: rotate(-90deg); }
+.grp-fold > summary.group-head:hover { color: var(--green); }
+.grp-fold:not([open]) > summary.group-head { margin-bottom: 0; }
+.cat-body > .grp-fold:first-child > .group-head { margin-top: 28px; }
+.grp-fold > .grid, .grp-fold > .genus-block:first-of-type { margin-top: 0; }
