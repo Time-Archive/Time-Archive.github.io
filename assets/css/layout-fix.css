@@ -79,3 +79,10 @@ details.fold > summary::-webkit-details-marker { display: none; }
 .grp-fold:not([open]) > summary.group-head { margin-bottom: 0; }
 .cat-body > .grp-fold:first-child > .group-head { margin-top: 28px; }
 .grp-fold > .grid, .grp-fold > .genus-block:first-of-type { margin-top: 0; }
+
+/* 상세 페이지 스마트스토어 버튼 */
+.buy { margin-top: 22px; }
+.buy .btn { min-width: 168px; justify-content: center; }
+.buy .btn.soon { color: var(--gray-4); border-color: var(--gray-2); }
+.buy .btn.soon:hover { color: var(--green); border-color: var(--green); }
+@media (max-width: 760px) { .buy .btn { width: 100%; } }

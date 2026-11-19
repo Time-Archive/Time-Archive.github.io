@@ -90,6 +90,13 @@
       </div>
     </a>`;
 
+  // 스마트스토어: 항목에 buy(상품 주소)가 있으면 "구매하기", 없으면 "판매 예정"(스토어 홈으로 연결)
+  const STORE = "https://smartstore.naver.com/plantimalxkai";
+  const buyBtn = (it) =>
+    `<div class="buy">${it.buy
+      ? `<a class="btn fill" href="${esc(it.buy)}" target="_blank" rel="noopener">구매하기 →</a>`
+      : `<a class="btn soon" href="${STORE}" target="_blank" rel="noopener">판매 예정 →</a>`}</div>`;
+
   const empty = (msg) => `<div class="empty">${esc(msg)}</div>`;
 
   /* ---------- header / footer ---------- */
@@ -379,6 +386,7 @@
               ${dl("채집자 · 번호", esc(p.collector))}
               ${dl("최근 기록", fmtDate(updated(p)))}
             </dl>
+            ${buyBtn(p)}
             <div class="tags">${tagsOf(p).map((t) => chip(t)).join("")}</div>
             ${p.notes ? `<div class="note">${esc(p.notes)}</div>` : ""}
             ${p.sample ? `<div class="note">샘플 데이터입니다. 실제 등록 시 POWO 기준으로 다시 확인합니다.</div>` : ""}
@@ -502,6 +510,7 @@
               ${dl("생물", esc((v.inhabitants || []).join(", ")))}
               ${dl("최근 기록", fmtDate(updated(v)))}
             </dl>
+            ${buyBtn(v)}
             ${(v.tags || []).length ? `<div class="tags">${v.tags.map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>` : ""}
             ${v.description ? `<div class="note">${esc(v.description)}</div>` : ""}
             ${v.sample ? `<div class="note">샘플 데이터입니다. 실제 비바리움 등록 시 교체됩니다.</div>` : ""}

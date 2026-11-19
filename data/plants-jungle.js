@@ -217,6 +217,7 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     notes: "",
     sources: [{"title": "POWO — Homalomena (속)", "url": "https://powo.science.kew.org/results?q=Homalomena", "note": "속 정보"}],
     addedAt: "2026-11-19",
+    buy: "https://smartstore.naver.com/plantimalxkai/products/13884335404",
     photos: [{"src": "images/plants/homalomena-sp-red-silver-ii/2026-11-18-01.jpg", "date": "2026-11-18", "caption": ""}, {"src": "images/plants/homalomena-sp-red-silver-ii/2026-11-18-02.jpg", "date": "2026-11-18", "caption": ""}, {"src": "images/plants/homalomena-sp-red-silver-ii/2026-11-18-03.jpg", "date": "2026-11-18", "caption": ""}],
     flowers: [],
   },
