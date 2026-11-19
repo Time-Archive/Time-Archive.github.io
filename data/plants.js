@@ -44,7 +44,7 @@ window.TA_PLANTS = [
     notes: "",
     sources: [{"title": "orchid.guru — Aerangis citrata", "url": "https://orchid.guru/content/orchids/a/aerangis/citrata", "note": "원산지 · 해발고도"}],
     addedAt: "2026-11-18",
-    photos: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": ""}],
+    photos: [{"src": "images/plants/aerangis-citrata/2026-03-26-leaf.jpg", "date": "2026-03-26", "caption": ""}],
     flowers: [{"src": "images/plants/aerangis-citrata/2026-03-26-01.jpg", "date": "2026-03-26", "caption": "", "credit": "Time Archive (KAI)"}, {"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Aerangis_citrata_Orchi_002.jpg/960px-Aerangis_citrata_Orchi_002.jpg", "caption": "", "credit": "Orchi", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0", "link": "https://commons.wikimedia.org/wiki/File:Aerangis_citrata_Orchi_002.jpg"}],
   },
   {
