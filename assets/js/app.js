@@ -59,6 +59,8 @@
     (p.tags || []).forEach((x) => t.push({ t: "tag", label: x }));
     return t;
   };
+  // 아카이브 목록의 묶음 단위: Jungle Plants는 속(Genus)별, 속이 없으면 과(Family)별 / 나머지는 Tribe·Family별
+  const groupOf = (p) => (p.category === "jungle" ? p.genus || p.group : p.group);
   const chip = (tag, extra = "") =>
     `<a class="chip ${extra}" data-t="${tag.t}" data-l="${esc(tag.label)}" href="plants.html?tag=${encodeURIComponent(tag.label)}">${esc(tag.label)}${tag.n ? `<span class="n">${tag.n}</span>` : ""}</a>`;
 
@@ -236,11 +238,11 @@
 
       $("#cats").innerHTML = CATS.map((c, i) => {
         // 중분류(Tribe / Family) → 소분류(Genus) → 학명 abc 순
-        const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(a.group, b.group) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
+        const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(groupOf(a), groupOf(b)) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
         if (!items.length && (state.tag || state.q)) return "";
         const groups = [];
         items.forEach((p) => {
-          const g = p.group || "미분류";
+          const g = groupOf(p) || "미분류";
           let o = groups.find((x) => x.g === g);
           if (!o) groups.push((o = { g, items: [] }));
           o.items.push(p);
