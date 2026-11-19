@@ -221,7 +221,7 @@
       const tags = tagsOf(p).map((t) => t.label);
       if (state.tag && !tags.includes(state.tag)) return false;
       if (!state.q) return true;
-      const hay = [p.scientificName, p.koreanName, p.author, ...tags].join(" ").toLowerCase();
+      const hay = [p.scientificName, p.koreanName, p.author, ...tags, ...(p.aliases || [])].join(" ").toLowerCase(); // aliases = 화면에는 안 보이는 검색용 다른 이름
       return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
     };
 
