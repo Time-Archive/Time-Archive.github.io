@@ -510,10 +510,10 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     flowers: [],
   },
   {
-    id: "srh",
-    scientificName: "Sonerila sp. 'Red hair'",
+    id: "sk",
+    scientificName: "Sonerila sp. 'Kota'",
     author: "",
-    koreanName: "소네릴라 sp. 'Red hair'",
+    koreanName: "소네릴라 sp. 'Kota'",
     category: "jungle",
     family: "Melastomataceae",
     group: "Family Melastomataceae",
@@ -530,7 +530,7 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     notes: "산지 Kota Agung은 수마트라 남부(람풍)의 지명이라 지도에 Sumatera를 표시했습니다.",
     sources: [{"title": "POWO — Sonerila (속)", "url": "https://powo.science.kew.org/results?q=Sonerila", "note": "속 정보"}],
     addedAt: "2026-11-20",
-    photos: [{"src": "images/plants/sonerila-sp-red-hair/2026-11-19-01.jpg", "date": "2026-11-19", "caption": ""}, {"src": "images/plants/sonerila-sp-red-hair/2026-11-19-02.jpg", "date": "2026-11-19", "caption": ""}, {"src": "images/plants/sonerila-sp-red-hair/2026-11-19-03.jpg", "date": "2026-11-19", "caption": ""}],
+    photos: [{"src": "images/plants/sonerila-sp-kota/2026-11-19-01.jpg", "date": "2026-11-19", "caption": ""}, {"src": "images/plants/sonerila-sp-kota/2026-11-19-02.jpg", "date": "2026-11-19", "caption": ""}, {"src": "images/plants/sonerila-sp-kota/2026-11-19-03.jpg", "date": "2026-11-19", "caption": ""}],
     flowers: [],
   },
 ]);
