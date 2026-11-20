@@ -198,7 +198,7 @@
       tally[k].n++;
     }));
     const tagList = (types) => Object.values(tally).filter((t) => types.includes(t.t)).sort((a, b) => cmp(a.label, b.label));
-    const row = (title, types, open) => {
+    const row = (title, types, open) => { // 태그 줄은 기본으로 접어 둠 (선택된 태그가 있는 줄만 펼침)
       const l = tagList(types);
       return l.length ? `<details ${open ? "open" : ""}><summary>${title} (${l.length})</summary><div class="tagrow">${l.map((t) => chip(t)).join("")}</div></details>` : "";
     };
@@ -215,7 +215,7 @@
       </div></div>
       <div class="wrap">
         <div class="tagpanel">
-          ${row("Tribe · Family", ["group"], true)}
+          ${row("Tribe · Family", ["group"], false)}
           ${row("Genus", ["genus"], false)}
           ${row("Native", ["origin"], false)}
           ${row("Locality", ["locality"], false)}
