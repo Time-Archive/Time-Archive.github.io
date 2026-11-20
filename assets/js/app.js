@@ -59,8 +59,8 @@
     (p.tags || []).forEach((x) => t.push({ t: "tag", label: x }));
     return t;
   };
-  // 아카이브 목록의 묶음 단위: Jungle Plants·Aroids는 속(Genus)별(속이 없으면 과), Orchids·Ferns는 Tribe·Family → Genus 2단계
-  const BY_GENUS = ["jungle", "aroid"]; // 속별로 바로 묶는 대분류
+  // 아카이브 목록의 묶음 단위: Aroids는 속(Genus)별, Orchids·Ferns·Jungle Plants는 Tribe·Family → Genus 2단계
+  const BY_GENUS = ["aroid"]; // 속별로 바로 묶는 대분류 (나머지는 과·족 → 속 2단계)
   const groupOf = (p) => (BY_GENUS.includes(p.category) ? p.genus || p.group : p.group);
   const chip = (tag, extra = "") =>
     `<a class="chip ${extra}" data-t="${tag.t}" data-l="${esc(tag.label)}" href="plants.html?tag=${encodeURIComponent(tag.label)}">${esc(tag.label)}${tag.n ? `<span class="n">${tag.n}</span>` : ""}</a>`;
@@ -74,7 +74,6 @@
     <a class="card" href="plant.html?id=${encodeURIComponent(p.id)}">
       <div class="card-img">${p.sample ? '<span class="badge">SAMPLE</span>' : ""}${imgOrPh(p, p.scientificName)}</div>
       <div class="card-body">
-        <span class="card-kicker">${esc([catOf(p.category).en, p.genus].filter(Boolean).join(" · "))}</span>
         <h3 class="sci">${sci(p.scientificName)}</h3>
         <span class="card-meta">${esc([p.koreanName, fmtDate(updated(p))].filter(Boolean).join(" · "))}</span>
       </div>
@@ -234,7 +233,7 @@
       return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
     };
 
-    // 소분류: 중분류(Tribe·Family) 안에서 속(Genus)별로 한 번 더 묶기 (속 이름 abc 순, 그 안은 학명 abc 순)
+    // 소분류: 중분류(Tribe·Family) 안에서 속(Genus)별로 한 번 더 묶기 (속 이름 abc 순, 그 안은 학명 abc 순). 속을 모르면 제목 없이 바로 표시
     const genusBlocks = (items) => {
       const gs = [];
       items.forEach((p) => {
@@ -243,7 +242,7 @@
         if (!o) gs.push((o = { k, items: [] }));
         o.items.push(p);
       });
-      return gs.map((o) => `<div class="genus-block"><div class="genus-head"><small>Genus</small><i>${esc(o.k)}</i><span>${o.items.length}</span></div><div class="grid">${o.items.map(plantCard).join("")}</div></div>`).join("");
+      return gs.map((o) => `<div class="genus-block">${o.k === "미분류" ? "" : `<div class="genus-head"><small>Genus</small><i>${esc(o.k)}</i><span>${o.items.length}</span></div>`}<div class="grid">${o.items.map(plantCard).join("")}</div></div>`).join("");
     };
 
     function draw() {

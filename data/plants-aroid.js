@@ -7,7 +7,7 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     id: "pms",
     scientificName: "Philodendron sp. 'Mini Santiago'",
     author: "",
-    koreanName: "필로덴드론 sp. 'Mini Santiago'",
+    koreanName: "필로덴드론 sp. '미니 산티아고'",
     category: "aroid",
     family: "Araceae",
     group: "Family Araceae",
