@@ -99,4 +99,99 @@ window.TA_VIVARIUMS = [
       { src: "images/vivariums/303045-002/2026-11-17-side.jpg", date: "2026-11-17", caption: "측면" },
     ],
   },
+  {
+    id: "202030-001",
+    name: "202030-001",
+    no: "001",
+    type: "",
+    size: "20 × 20 × 30 cm",
+    startedAt: "2026-10-21", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/202030-001/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/202030-001/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
+    ],
+  },
+  {
+    id: "202030-002",
+    name: "202030-002",
+    no: "002",
+    type: "",
+    size: "20 × 20 × 30 cm",
+    startedAt: "2026-11-11", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/202030-002/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/202030-002/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
+    ],
+  },
+  {
+    id: "202030-003",
+    name: "202030-003",
+    no: "003",
+    type: "",
+    size: "20 × 20 × 30 cm",
+    startedAt: "2026-10-09", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/202030-003/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/202030-003/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
+    ],
+  },
+  {
+    id: "202030-004",
+    name: "202030-004",
+    no: "004",
+    type: "",
+    size: "20 × 20 × 30 cm",
+    startedAt: "2026-11-21", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/202030-004/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/202030-004/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
+    ],
+  },
+  {
+    id: "202030-005",
+    name: "202030-005",
+    no: "005",
+    type: "",
+    size: "20 × 20 × 30 cm",
+    startedAt: "2026-11-20", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/202030-005/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/202030-005/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
+    ],
+  },
 ];
