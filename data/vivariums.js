@@ -194,4 +194,23 @@ window.TA_VIVARIUMS = [
       { src: "images/vivariums/202030-005/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
     ],
   },
+  {
+    id: "303045-003",
+    name: "303045-003",
+    no: "003",
+    type: "",
+    size: "30 × 30 × 45 cm",
+    startedAt: "2026-10-31", // 제작일
+    lighting: "",
+    environment: "",
+    inhabitants: [],
+    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    tags: [],
+    description: "",
+    addedAt: "2026-11-21",
+    photos: [
+      { src: "images/vivariums/303045-003/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
+      { src: "images/vivariums/303045-003/2026-11-21-side.jpg", date: "2026-11-21", caption: "측면" },
+    ],
+  },
 ];
