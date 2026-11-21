@@ -31,7 +31,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["hm"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["hm", "pl"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-18",
@@ -90,7 +90,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["pl", "drf", "pyp"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-18",
@@ -109,7 +109,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["pl"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-21",
@@ -128,7 +128,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["drf"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-21",
@@ -204,7 +204,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: [], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["drf"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-21",
