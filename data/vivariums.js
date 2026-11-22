@@ -170,7 +170,7 @@ window.TA_VIVARIUMS = [
     tags: [],
     description: "",
     addedAt: "2026-11-21",
-    photos: [
+    photos: [{"src": "images/vivariums/202030-004/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/vivariums/202030-004/2026-11-22-02.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/vivariums/202030-004/2026-11-22-03.jpg", "date": "2026-11-22", "caption": ""}, 
       { src: "images/vivariums/202030-004/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
       { src: "images/vivariums/202030-004/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
     ],
@@ -189,7 +189,7 @@ window.TA_VIVARIUMS = [
     tags: [],
     description: "",
     addedAt: "2026-11-21",
-    photos: [
+    photos: [{"src": "images/vivariums/202030-005/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/vivariums/202030-005/2026-11-22-02.jpg", "date": "2026-11-22", "caption": ""}, 
       { src: "images/vivariums/202030-005/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
       { src: "images/vivariums/202030-005/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
     ],

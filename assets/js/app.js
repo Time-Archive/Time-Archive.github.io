@@ -1,8 +1,9 @@
-/* Time Archive — 데이터(data/plants*.js, data/vivariums.js)를 읽어 모든 페이지를 그립니다. */
+/* Time Archive — 데이터(data/plants*.js, data/vivariums.js, data/animals.js)를 읽어 모든 페이지를 그립니다. */
 (() => {
   "use strict";
   const PLANTS = window.TA_PLANTS || [];
   const VIVS = window.TA_VIVARIUMS || [];
+  const ANIMALS = window.TA_ANIMALS || [];
 
   // 대분류 (순서 고정)
   const CATS = [
@@ -10,8 +11,29 @@
     { key: "fern", ko: "양치식물", en: "Ferns" },
     { key: "jungle", ko: "정글플랜츠", en: "Jungle Plants" },
     { key: "aroid", ko: "아로이드", en: "Aroids" },
+    { key: "bromeliad", ko: "브로멜리아드", en: "Bromeliads" },
   ];
-  const catOf = (k) => CATS.find((c) => c.key === k) || { key: k, ko: k || "기타", en: k || "Others" };
+  // 생물 아카이브 대분류
+  const ACATS = [
+    { key: "amphibian", ko: "양서류", en: "Amphibians" },
+  ];
+
+  // 아카이브 종류별 설정: 식물 아카이브(plants.html / plant.html)와 생물 아카이브(animals.html / animal.html)가 같은 화면 구성을 씁니다
+  const KP = {
+    items: PLANTS, cats: CATS, list: "plants.html", detail: "plant.html", noun: "식물",
+    eyebrow: "Plant Archive", title: "식물 아카이브",
+    intro: "Orchids, Ferns, Jungle Plants, Aroids, Bromeliads. 종마다 쌓여가는 시간을 분류군별로 보관합니다.",
+    byGenus: ["aroid", "bromeliad"], // 속별로 바로 묶는 대분류 (나머지는 과·족 → 속 2단계)
+    groupLabel: "Tribe · Family", mapSrc: "Source: POWO / WGSRPD Level 3",
+  };
+  const KA = {
+    items: ANIMALS, cats: ACATS, list: "animals.html", detail: "animal.html", noun: "생물",
+    eyebrow: "Animal Archive", title: "생물 아카이브",
+    intro: "비바리움에서 함께 지내는 생물들. 종마다 쌓여가는 시간을 기록합니다.",
+    byGenus: [],
+    groupLabel: "Family", mapSrc: "Source: AmphibiaWeb / WGSRPD Level 3",
+  };
+  const catOf = (k, K = KP) => K.cats.find((c) => c.key === k) || { key: k, ko: k || "기타", en: k || "Others" };
 
   // TDWG level 3 경계 데이터: 저장소에 data/tdwg-level3.geojson 이 있으면 우선 사용, 없으면 CDN
   const TDWG_SOURCES = [
@@ -49,8 +71,8 @@
       .join(" ");
 
   // 식물 하나의 태그 목록: 대분류 / Tribe·Family(중분류) / Genus(소분류) / Native(원산지) / Locality(산지) / 채집자 / 기타
-  const tagsOf = (p) => {
-    const t = [{ t: "cat", label: catOf(p.category).en }];
+  const tagsOf = (p, K = KP) => {
+    const t = [{ t: "cat", label: catOf(p.category, K).en }];
     if (p.group) t.push({ t: "group", label: p.group });
     if (p.genus) t.push({ t: "genus", label: p.genus });
     (p.origin || []).forEach((o) => t.push({ t: "origin", label: o }));
@@ -60,24 +82,25 @@
     return t;
   };
   // 아카이브 목록의 묶음 단위: Aroids는 속(Genus)별, Orchids·Ferns·Jungle Plants는 Tribe·Family → Genus 2단계
-  const BY_GENUS = ["aroid"]; // 속별로 바로 묶는 대분류 (나머지는 과·족 → 속 2단계)
-  const groupOf = (p) => (BY_GENUS.includes(p.category) ? p.genus || p.group : p.group);
-  const chip = (tag, extra = "") =>
-    `<a class="chip ${extra}" data-t="${tag.t}" data-l="${esc(tag.label)}" href="plants.html?tag=${encodeURIComponent(tag.label)}">${esc(tag.label)}${tag.n ? `<span class="n">${tag.n}</span>` : ""}</a>`;
+  const groupOf = (p, K = KP) => (K.byGenus.includes(p.category) ? p.genus || p.group : p.group);
+  const chip = (tag, extra = "", K = KP) =>
+    `<a class="chip ${extra}" data-t="${tag.t}" data-l="${esc(tag.label)}" href="${K.list}?tag=${encodeURIComponent(tag.label)}">${esc(tag.label)}${tag.n ? `<span class="n">${tag.n}</span>` : ""}</a>`;
 
   const imgOrPh = (it, label) => {
     const c = cover(it);
     return c ? `<img src="${esc(c.src)}" alt="${esc(label)}" loading="lazy">` : `<div class="ph">${esc(String(label || "?").trim().charAt(0))}</div>`;
   };
 
-  const plantCard = (p) => `
-    <a class="card" href="plant.html?id=${encodeURIComponent(p.id)}">
+  const itemCard = (K) => (p) => `
+    <a class="card" href="${K.detail}?id=${encodeURIComponent(p.id)}">
       <div class="card-img">${p.sample ? '<span class="badge">SAMPLE</span>' : ""}${imgOrPh(p, p.scientificName)}</div>
       <div class="card-body">
         <h3 class="sci">${sci(p.scientificName)}</h3>
         <span class="card-meta">${esc([p.koreanName, fmtDate(updated(p))].filter(Boolean).join(" · "))}</span>
       </div>
     </a>`;
+  const plantCard = itemCard(KP);
+  const animalCard = itemCard(KA);
 
   const vivCard = (v) => `
     <a class="card viv" href="vivarium.html?id=${encodeURIComponent(v.id)}">
@@ -106,14 +129,15 @@
         <a class="brand" href="index.html" aria-label="Time Archive 홈"><img src="assets/img/logo-trim.png?v=10" alt="Time Archive"></a>
         <nav class="nav">
           <a class="${on(["home"])}" href="index.html">Home</a>
-          <a class="${on(["plants", "plant"])}" href="plants.html">식물 아카이브</a>
-          <a class="${on(["vivariums", "vivarium"])}" href="vivariums.html">비바리움 아카이브</a>
+          <a class="${on(["plants", "plant"])}" href="plants.html">식물<span class="l"> 아카이브</span></a>
+          <a class="${on(["vivariums", "vivarium"])}" href="vivariums.html">비바리움<span class="l"> 아카이브</span></a>
+          <a class="${on(["animals", "animal"])}" href="animals.html">생물<span class="l"> 아카이브</span></a>
         </nav>
       </div></header>`;
     $("#footer").innerHTML = `
       <footer class="site-footer"><div class="wrap">
         <b><span>Time</span> Archive</b>
-        <small>식물과 비바리움의 시간을 기록하고, 보관합니다. © ${new Date().getFullYear()} Time Archive</small>
+        <small>식물과 비바리움, 생물의 시간을 기록하고, 보관합니다. © ${new Date().getFullYear()} Time Archive</small>
       </div></footer>`;
   }
 
@@ -181,16 +205,22 @@
     $("#home-vivs").innerHTML = vivs.length ? vivs.slice(0, HOME_COUNT).map(vivCard).join("") : empty("등록된 비바리움이 없습니다.");
     $("#home-plants-count").textContent = `${PLANTS.length} species`;
     $("#home-vivs-count").textContent = `${VIVS.length} vivariums`;
+    if ($("#home-animals")) {
+      const animals = [...ANIMALS].sort(byUpdated);
+      $("#home-animals").innerHTML = animals.length ? animals.slice(0, HOME_COUNT).map(animalCard).join("") : empty("등록된 생물이 없습니다.");
+      $("#home-animals-count").textContent = `${ANIMALS.length} species`;
+    }
   }
 
-  /* ---------- PLANTS (archive) ---------- */
-  function plants() {
+  /* ---------- PLANTS / ANIMALS (archive) ---------- */
+  function archive(K) {
     const app = $("#app");
+    const ITEMS = K.items, CATS = K.cats;
     const state = { tag: param("tag") || "", q: "" };
 
     // 전체 태그 집계
     const tally = {};
-    PLANTS.forEach((p) => tagsOf(p).forEach((t) => {
+    ITEMS.forEach((p) => tagsOf(p, K).forEach((t) => {
       if (t.t === "cat") return;
       const k = t.t + "|" + t.label;
       tally[k] = tally[k] || { ...t, n: 0 };
@@ -199,22 +229,22 @@
     const tagList = (types) => Object.values(tally).filter((t) => types.includes(t.t)).sort((a, b) => cmp(a.label, b.label));
     const row = (title, types, open) => { // 태그 줄은 기본으로 접어 둠 (선택된 태그가 있는 줄만 펼침)
       const l = tagList(types);
-      return l.length ? `<details ${open ? "open" : ""}><summary>${title} (${l.length})</summary><div class="tagrow">${l.map((t) => chip(t)).join("")}</div></details>` : "";
+      return l.length ? `<details ${open ? "open" : ""}><summary>${title} (${l.length})</summary><div class="tagrow">${l.map((t) => chip(t, "", K)).join("")}</div></details>` : "";
     };
 
     app.innerHTML = `
       <div class="page-head"><div class="wrap">
-        <span class="eyebrow">Plant Archive</span>
-        <h1>식물 아카이브</h1>
-        <p>Orchids, Ferns, Jungle Plants, Aroids. 종마다 쌓여가는 시간을 분류군별로 보관합니다.</p>
+        <span class="eyebrow">${K.eyebrow}</span>
+        <h1>${K.title}</h1>
+        <p>${esc(K.intro)}</p>
       </div></div>
       <div class="toolbar"><div class="wrap">
-        <div class="catnav">${CATS.map((c) => `<a class="chip dark" href="#${c.key}">${c.en}<span class="n">${PLANTS.filter((p) => p.category === c.key).length}</span></a>`).join("")}</div>
+        <div class="catnav">${CATS.map((c) => `<a class="chip dark" href="#${c.key}">${c.en}<span class="n">${ITEMS.filter((p) => p.category === c.key).length}</span></a>`).join("")}</div>
         <input class="search" type="search" placeholder="학명 · 국명 · 태그 검색" aria-label="검색">
       </div></div>
       <div class="wrap">
         <div class="tagpanel">
-          ${row("Tribe · Family", ["group"], false)}
+          ${row(K.groupLabel, ["group"], false)}
           ${row("Genus", ["genus"], false)}
           ${row("Native", ["origin"], false)}
           ${row("Locality", ["locality"], false)}
@@ -226,7 +256,7 @@
 
     const closed = new Set(); // 접어 둔 대분류·중분류 키
     const match = (p) => {
-      const tags = tagsOf(p).map((t) => t.label);
+      const tags = tagsOf(p, K).map((t) => t.label);
       if (state.tag && !tags.includes(state.tag)) return false;
       if (!state.q) return true;
       const hay = [p.scientificName, p.koreanName, p.author, ...tags, ...(p.aliases || [])].join(" ").toLowerCase(); // aliases = 화면에는 안 보이는 검색용 다른 이름
@@ -242,13 +272,13 @@
         if (!o) gs.push((o = { k, items: [] }));
         o.items.push(p);
       });
-      return gs.map((o) => `<div class="genus-block">${o.k === "미분류" ? "" : `<div class="genus-head"><small>Genus</small><i>${esc(o.k)}</i><span>${o.items.length}</span></div>`}<div class="grid">${o.items.map(plantCard).join("")}</div></div>`).join("");
+      return gs.map((o) => `<div class="genus-block">${o.k === "미분류" ? "" : `<div class="genus-head"><small>Genus</small><i>${esc(o.k)}</i><span>${o.items.length}</span></div>`}<div class="grid">${o.items.map(itemCard(K)).join("")}</div></div>`).join("");
     };
 
     function draw() {
-      const list = PLANTS.filter(match);
+      const list = ITEMS.filter(match);
       $("#active").innerHTML = state.tag || state.q
-        ? `<div class="tagrow" style="padding:18px 0 0">${state.tag ? `<a class="chip on" href="plants.html">${esc(state.tag)} ×</a>` : ""}<span class="count" style="align-self:center">${list.length}종</span></div>`
+        ? `<div class="tagrow" style="padding:18px 0 0">${state.tag ? `<a class="chip on" href="${K.list}">${esc(state.tag)} ×</a>` : ""}<span class="count" style="align-self:center">${list.length}종</span></div>`
         : "";
       app.querySelectorAll(".tagpanel .chip").forEach((c) => {
         const on = c.dataset.l === state.tag;
@@ -258,11 +288,11 @@
 
       $("#cats").innerHTML = CATS.map((c, i) => {
         // 중분류(Tribe / Family) → 소분류(Genus) → 학명 abc 순
-        const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(groupOf(a), groupOf(b)) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
+        const items = list.filter((p) => p.category === c.key).sort((a, b) => cmp(groupOf(a, K), groupOf(b, K)) || cmp(a.genus, b.genus) || cmp(a.scientificName, b.scientificName));
         if (!items.length && (state.tag || state.q)) return "";
         const groups = [];
         items.forEach((p) => {
-          const g = groupOf(p) || "미분류";
+          const g = groupOf(p, K) || "미분류";
           let o = groups.find((x) => x.g === g);
           if (!o) groups.push((o = { g, items: [] }));
           o.items.push(p);
@@ -274,12 +304,12 @@
           <div class="cat-body">
           ${items.length ? groups.map((g) => {
             const gk = "grp:" + c.key + ":" + g.g;
-            return `<details class="fold grp-fold" data-k="${esc(gk)}" ${closed.has(gk) ? "" : "open"}><summary class="group-head">${esc(g.g)} <span>${g.items.length}</span></summary>${BY_GENUS.includes(c.key) ? `<div class="grid">${g.items.map(plantCard).join("")}</div>` : genusBlocks(g.items)}</details>`;
-          }).join("") : `<div style="margin-top:22px">${empty("아직 등록된 식물이 없습니다.")}</div>`}
+            return `<details class="fold grp-fold" data-k="${esc(gk)}" ${closed.has(gk) ? "" : "open"}><summary class="group-head">${esc(g.g)} <span>${g.items.length}</span></summary>${K.byGenus.includes(c.key) ? `<div class="grid">${g.items.map(itemCard(K)).join("")}</div>` : genusBlocks(g.items)}</details>`;
+          }).join("") : `<div style="margin-top:22px">${empty(`아직 등록된 ${K.noun}이 없습니다.`)}</div>`}
           </div>
           </details>
         </section>`;
-      }).join("") || `<div style="padding:48px 0">${empty("조건에 맞는 식물이 없습니다.")}</div>`;
+      }).join("") || `<div style="padding:48px 0">${empty(`조건에 맞는 ${K.noun}이 없습니다.`)}</div>`;
     }
 
     // 대분류·중분류 접기/펼치기: 검색·태그로 다시 그려도 접어 둔 상태 유지 (기본은 모두 펼침)
@@ -338,17 +368,18 @@
     }
   }
 
-  function plant() {
+  function detail(K) {
     const app = $("#app");
-    const p = PLANTS.find((x) => x.id === param("id"));
-    if (!p) { app.innerHTML = `<div class="wrap" style="padding:80px 0">${empty("식물을 찾을 수 없습니다.")}<p style="text-align:center"><a class="more" href="plants.html">식물 아카이브로</a></p></div>`; return; }
+    const isPlant = K === KP;
+    const p = K.items.find((x) => x.id === param("id"));
+    if (!p) { app.innerHTML = `<div class="wrap" style="padding:80px 0">${empty(`${K.noun}을 찾을 수 없습니다.`)}<p style="text-align:center"><a class="more" href="${K.list}">${K.title}로</a></p></div>`; return; }
     document.title = `${p.scientificName} — Time Archive`;
-    const c = catOf(p.category);
+    const c = catOf(p.category, K);
     const photos = photosOf(p);
     const cv = photos[0];
-    const inViv = VIVS.filter((v) => (v.plants || []).includes(p.id));
+    const inViv = isPlant ? VIVS.filter((v) => (v.plants || []).includes(p.id)) : VIVS.filter((v) => (v.animals || []).includes(p.id));
     // 꽃 사진 탭 (난초 또는 꽃 사진이 있는 식물) — 꽃 사진은 메인 사진·업데이트순에 영향을 주지 않음
-    const hasFlowerTab = p.category === "orchid" || (p.flowers || []).length > 0;
+    const hasFlowerTab = isPlant && (p.category === "orchid" || (p.flowers || []).length > 0);
     const flowers = hasFlowerTab ? p.flowers || [] : [];
     const flowerGrid = flowers.length
       ? `<div class="tl-grid">${flowers.map((f, i) => `<figure data-lb="${photos.length + i}"><div class="card-img flower"><img src="${esc(f.src)}" alt="${esc(f.caption || p.scientificName + " 꽃")}" loading="lazy"></div>${f.caption || f.credit ? `<figcaption>${esc(f.caption || "")}${f.credit ? `<span class="credit">사진: ${esc(f.credit)}${f.license ? ` · ${f.licenseUrl ? `<a href="${esc(f.licenseUrl)}" target="_blank" rel="noopener">${esc(f.license)}</a>` : esc(f.license)}` : ""}${f.link ? ` · <a href="${esc(f.link)}" target="_blank" rel="noopener">원본</a>` : ""}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`
@@ -364,7 +395,7 @@
 
     app.innerHTML = `
       <div class="wrap">
-        <div class="crumbs"><a href="plants.html">식물 아카이브</a><i>/</i><a href="plants.html#${c.key}">${c.en}</a>${p.group ? `<i>/</i><a href="plants.html?tag=${encodeURIComponent(p.group)}">${esc(p.group)}</a>` : ""}</div>
+        <div class="crumbs"><a href="${K.list}">${K.title}</a><i>/</i><a href="${K.list}#${c.key}">${c.en}</a>${p.group ? `<i>/</i><a href="${K.list}?tag=${encodeURIComponent(p.group)}">${esc(p.group)}</a>` : ""}</div>
         <div class="detail">
           <figure class="detail-photo" style="margin:0" ${cv ? 'data-lb="0"' : ""}>
             ${imgOrPh(p, p.scientificName)}${cv && cv.date ? `<figcaption>${fmtDate(cv.date)}</figcaption>` : ""}
@@ -386,12 +417,12 @@
               ${dl("최근 기록", fmtDate(updated(p)))}
             </dl>
             ${buyBtn(p)}
-            <div class="tags">${tagsOf(p).map((t) => chip(t)).join("")}</div>
+            <div class="tags">${tagsOf(p, K).map((t) => chip(t, "", K)).join("")}</div>
             ${p.notes ? `<div class="note">${esc(p.notes)}</div>` : ""}
             ${p.sample ? `<div class="note">샘플 데이터입니다. 실제 등록 시 POWO 기준으로 다시 확인합니다.</div>` : ""}
             <div class="sources">
               <h3>Sources · 출처</h3>
-              <ul>${((p.sources || []).length ? p.sources : [{ title: "Plants of the World Online (POWO)", url: powo }])
+              <ul>${((p.sources || []).length || !isPlant ? p.sources || [] : [{ title: "Plants of the World Online (POWO)", url: powo }])
                 .map((s) => `<li>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || s.url)} ↗</a>` : esc(s.title)}${s.note ? `<span>${esc(s.note)}</span>` : ""}</li>`)
                 .join("")}</ul>
             </div>
@@ -402,7 +433,7 @@
       <section class="section"><div class="wrap">
         <div class="section-head"><div><span class="eyebrow">${nativeMap ? "Native Range" : "Locality"}</span><h2>${nativeMap ? "서식지 분포" : "산지"}</h2></div></div>
         <div class="map-box"><div id="map"></div>
-          <div class="map-foot"><span class="key">${nativeMap ? "Native" : "산지"}</span><span id="map-status">${esc(mapText)}</span><span class="src">${nativeMap ? "Source: POWO / WGSRPD Level 3" : "산지가 속한 지역 (WGSRPD Level 3)"}</span></div>
+          <div class="map-foot"><span class="key">${nativeMap ? "Native" : "산지"}</span><span id="map-status">${esc(mapText)}</span><span class="src">${nativeMap ? K.mapSrc : "산지가 속한 지역 (WGSRPD Level 3)"}</span></div>
         </div>
       </div></section>` : ""}
       <section class="section"><div class="wrap">
@@ -417,7 +448,7 @@
       </div></section>
       ${inViv.length ? `
       <section class="section"><div class="wrap">
-        <div class="section-head"><div><span class="eyebrow">Planted in</span><h2>식재된 비바리움</h2></div></div>
+        <div class="section-head"><div><span class="eyebrow">${isPlant ? "Planted in" : "Lives in"}</span><h2>${isPlant ? "식재된 비바리움" : "함께 사는 비바리움"}</h2></div></div>
         <div class="grid wide">${inViv.map(vivCard).join("")}</div>
       </div></section>` : ""}`;
 
@@ -489,6 +520,7 @@
     const photos = photosOf(v);
     const cv = photos[0];
     const planted = (v.plants || []).map((id) => PLANTS.find((p) => p.id === id)).filter(Boolean);
+    const living = (v.animals || []).map((id) => ANIMALS.find((a) => a.id === id)).filter(Boolean);
     const dl = (k, val) => (val ? `<div><dt>${k}</dt><dd>${val}</dd></div>` : "");
     app.innerHTML = `
       <div class="wrap">
@@ -524,6 +556,11 @@
       <section class="section"><div class="wrap">
         <div class="section-head"><div><span class="eyebrow">Plants</span><h2>식재 식물<small>${planted.length} species</small></h2></div></div>
         <div class="grid">${planted.map(plantCard).join("")}</div>
+      </div></section>` : ""}
+      ${living.length ? `
+      <section class="section"><div class="wrap">
+        <div class="section-head"><div><span class="eyebrow">Animals</span><h2>함께 사는 생물<small>${living.length} species</small></h2></div></div>
+        <div class="grid">${living.map(animalCard).join("")}</div>
       </div></section>` : ""}`;
     bindLightbox(app, photos);
   }
@@ -531,7 +568,11 @@
   /* ---------- boot ---------- */
   const page = document.body.dataset.page;
   chrome(page);
-  ({ home, plants, plant, vivariums, vivarium }[page] || (() => {}))();
+  ({
+    home, vivariums, vivarium,
+    plants: () => archive(KP), plant: () => detail(KP),
+    animals: () => archive(KA), animal: () => detail(KA),
+  }[page] || (() => {}))();
 })();
 
 /* 사진 보호: 우클릭(저장·복사) 메뉴, 끌어서 저장, 모바일 길게 눌러 저장을 막습니다.

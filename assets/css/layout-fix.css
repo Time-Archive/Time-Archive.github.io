@@ -86,3 +86,14 @@ details.fold > summary::-webkit-details-marker { display: none; }
 .buy .btn.soon { color: var(--gray-4); border-color: var(--gray-2); }
 .buy .btn.soon:hover { color: var(--green); border-color: var(--green); }
 @media (max-width: 760px) { .buy .btn { width: 100%; } }
+
+/* 상단 메뉴 4개(Home·식물·비바리움·생물): 좁은 화면에서는 "아카이브"를 줄여 한 줄에 맞춤 */
+@media (max-width: 600px) {
+  .nav { gap: 14px; }
+  .nav .l { display: none; }
+}
+@media (max-width: 360px) {
+  .nav { gap: 10px; font-size: 12px; }
+}
+/* 메인 첫 화면 버튼 3개가 좁은 화면에서 자연스럽게 줄바꿈 */
+.hero .btns { flex-wrap: wrap; }
