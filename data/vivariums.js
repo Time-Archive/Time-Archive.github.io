@@ -51,7 +51,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["lt", "ne"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["lt", "ne", "hpv"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-18",
@@ -90,7 +90,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["pl", "drf", "pyp", "lt", "dl", "pos", "pc"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["pl", "drf", "pyp", "lt", "dl", "pos", "pc", "anb"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-18",
@@ -185,11 +185,11 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["str"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["str", "ad"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-21",
-    photos: [{"src": "images/vivariums/202030-005/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/vivariums/202030-005/2026-11-22-02.jpg", "date": "2026-11-22", "caption": ""}, 
+    photos: [{"src": "images/vivariums/202030-005/2026-11-22-01-inside.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/vivariums/202030-005/2026-11-22-02-inside.jpg", "date": "2026-11-22", "caption": ""}, 
       { src: "images/vivariums/202030-005/2026-11-21-front.jpg", date: "2026-11-21", caption: "정면" },
       { src: "images/vivariums/202030-005/2026-11-21-close.jpg", date: "2026-11-21", caption: "근접" },
     ],
@@ -204,7 +204,7 @@ window.TA_VIVARIUMS = [
     lighting: "",
     environment: "",
     inhabitants: [],
-    plants: ["drf", "lt", "dl"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
+    plants: ["drf", "lt", "dl", "vf"], // data/plants.js 의 식물 id 를 넣으면 상세 페이지끼리 연결됩니다
     tags: [],
     description: "",
     addedAt: "2026-11-21",
