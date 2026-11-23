@@ -119,7 +119,7 @@
     it.sold
       ? `<div class="buy sold"><span class="btn is-sold" aria-disabled="true">판매 완료</span><a class="more" href="${STORE}" target="_blank" rel="noopener">스토어 둘러보기 →</a></div>`
       : `<div class="buy">${it.buy
-      ? `<a class="btn fill" href="${esc(it.buy)}" target="_blank" rel="noopener">구매하기 →</a>`
+      ? `${it.price ? `<span class="price">${Number(it.price).toLocaleString("ko-KR")}<small>원</small></span>` : ""}<a class="btn fill" href="${esc(it.buy)}" target="_blank" rel="noopener">구매하기 →</a>`
       : `<a class="btn soon" href="${STORE}" target="_blank" rel="noopener">판매 예정 →</a>`}</div>`;
 
   const empty = (msg) => `<div class="empty">${esc(msg)}</div>`;

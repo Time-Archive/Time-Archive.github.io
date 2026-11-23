@@ -113,3 +113,9 @@ details.fold > summary::-webkit-details-marker { display: none; }
 .buy.sold { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .buy .btn.is-sold { color: var(--gray-3); border-color: var(--gray-2); background: var(--gray-1); cursor: default; pointer-events: none; }
 @media (max-width: 760px) { .buy.sold .more { width: 100%; text-align: center; } }
+
+/* 상세 페이지 판매가 (스마트스토어 가격) */
+.buy:has(.price) { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.buy .price { font-size: 26px; font-weight: 700; letter-spacing: -.01em; line-height: 1; }
+.buy .price small { font-size: 15px; font-weight: 600; margin-left: 2px; color: var(--gray-4); }
+@media (max-width: 760px) { .buy .price { width: 100%; font-size: 24px; } }
