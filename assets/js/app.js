@@ -103,19 +103,22 @@
   const animalCard = itemCard(KA);
 
   const vivCard = (v) => `
-    <a class="card viv" href="vivarium.html?id=${encodeURIComponent(v.id)}">
-      <div class="card-img">${v.sample ? '<span class="badge">SAMPLE</span>' : ""}${imgOrPh(v, v.name)}</div>
+    <a class="card viv${v.sold ? " is-sold" : ""}" href="vivarium.html?id=${encodeURIComponent(v.id)}">
+      <div class="card-img">${v.sample ? '<span class="badge">SAMPLE</span>' : ""}${v.sold ? '<span class="sold-badge">SOLD</span>' : ""}${imgOrPh(v, v.name)}</div>
       <div class="card-body">
         <span class="card-kicker">${esc([v.type, v.size].filter(Boolean).join(" · ") || "Vivarium")}</span>
         <h3 class="plain">${esc(v.name)}</h3>
-        <span class="card-meta">${esc([v.startedAt ? "제작 " + fmtDate(v.startedAt) : "", updated(v) ? "업데이트 " + fmtDate(updated(v)) : ""].filter(Boolean).join(" · "))}</span>
+        <span class="card-meta">${v.sold ? '<b class="sold-tag">판매 완료</b> · ' : ""}${esc([v.startedAt ? "제작 " + fmtDate(v.startedAt) : "", updated(v) ? "업데이트 " + fmtDate(updated(v)) : ""].filter(Boolean).join(" · "))}</span>
       </div>
     </a>`;
 
   // 스마트스토어: 항목에 buy(상품 주소)가 있으면 "구매하기", 없으면 "판매 예정"(스토어 홈으로 연결)
   const STORE = "https://smartstore.naver.com/plantimalxkai";
+  // sold(판매일)가 있으면 "판매 완료" — 누를 수 없는 버튼 + 스토어 둘러보기 링크
   const buyBtn = (it) =>
-    `<div class="buy">${it.buy
+    it.sold
+      ? `<div class="buy sold"><span class="btn is-sold" aria-disabled="true">판매 완료</span><a class="more" href="${STORE}" target="_blank" rel="noopener">스토어 둘러보기 →</a></div>`
+      : `<div class="buy">${it.buy
       ? `<a class="btn fill" href="${esc(it.buy)}" target="_blank" rel="noopener">구매하기 →</a>`
       : `<a class="btn soon" href="${STORE}" target="_blank" rel="noopener">판매 예정 →</a>`}</div>`;
 
@@ -526,11 +529,11 @@
       <div class="wrap">
         <div class="crumbs"><a href="vivariums.html">비바리움 아카이브</a><i>/</i>${v.size ? `<a href="vivariums.html?size=${encodeURIComponent(v.size)}">${esc(v.size)}</a><i>/</i>` : ""}${esc(v.name)}</div>
         <div class="detail">
-          <figure class="detail-photo viv" style="margin:0" ${cv ? 'data-lb="0"' : ""}>
-            ${imgOrPh(v, v.name)}${cv && cv.date ? `<figcaption>${fmtDate(cv.date)}</figcaption>` : ""}
+          <figure class="detail-photo viv${v.sold ? " is-sold" : ""}" style="margin:0" ${cv ? 'data-lb="0"' : ""}>
+            ${v.sold ? '<span class="sold-badge">SOLD</span>' : ""}${imgOrPh(v, v.name)}${cv && cv.date ? `<figcaption>${fmtDate(cv.date)}</figcaption>` : ""}
           </figure>
           <div>
-            <span class="eyebrow">Vivarium</span>
+            <span class="eyebrow">Vivarium${v.sold ? ' <span class="sold-tag">· Sold</span>' : ""}</span>
             <h1 class="plain">${esc(v.name)}</h1>
             <dl class="info">
               ${dl("타입", esc(v.type))}
@@ -540,6 +543,7 @@
               ${dl("환경", esc(v.environment))}
               ${dl("생물", esc((v.inhabitants || []).join(", ")))}
               ${dl("최근 기록", fmtDate(updated(v)))}
+              ${v.sold ? dl("판매", `판매 완료${typeof v.sold === "string" ? " · " + fmtDate(v.sold) : ""}`) : ""}
             </dl>
             ${buyBtn(v)}
             ${(v.tags || []).length ? `<div class="tags">${v.tags.map((t) => `<span class="chip">${esc(t)}</span>`).join("")}</div>` : ""}
