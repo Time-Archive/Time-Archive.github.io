@@ -1230,9 +1230,9 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
   },
   {
     id: "acs",
-    scientificName: "Acanthaceae gen.",
+    scientificName: "Acanthaceae gen. Sarawak",
     author: "",
-    koreanName: "아칸타세아에 gen.",
+    koreanName: "아칸타세아에 gen. 사라왁",
     category: "jungle",
     family: "Acanthaceae",
     group: "Family Acanthaceae",
