@@ -12,6 +12,7 @@
     { key: "jungle", ko: "정글플랜츠", en: "Jungle Plants" },
     { key: "aroid", ko: "아로이드", en: "Aroids" },
     { key: "bromeliad", ko: "브로멜리아드", en: "Bromeliads" },
+    { key: "caudex", ko: "코덱스", en: "Caudex" },
   ];
   // 생물 아카이브 대분류
   const ACATS = [
@@ -22,8 +23,8 @@
   const KP = {
     items: PLANTS, cats: CATS, list: "plants.html", detail: "plant.html", noun: "식물",
     eyebrow: "Plant Archive", title: "식물 아카이브",
-    intro: "Orchids, Ferns, Jungle Plants, Aroids, Bromeliads. 종마다 쌓여가는 시간을 분류군별로 보관합니다.",
-    byGenus: ["aroid", "bromeliad"], // 속별로 바로 묶는 대분류 (나머지는 과·족 → 속 2단계)
+    intro: "Orchids, Ferns, Jungle Plants, Aroids, Bromeliads, Caudex. 종마다 쌓여가는 시간을 분류군별로 보관합니다.",
+    byGenus: ["aroid", "bromeliad", "caudex"], // 속별로 바로 묶는 대분류 (나머지는 과·족 → 속 2단계)
     groupLabel: "Tribe · Family", mapSrc: "Source: POWO / WGSRPD Level 3",
   };
   const KA = {
@@ -48,8 +49,9 @@
   const param = (k) => new URLSearchParams(location.search).get(k);
   const fmtDate = (d) => (d ? String(d).slice(0, 10).replace(/-/g, ".") : "");
   const photosOf = (it) => [...(it.photos || [])].sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
-  const cover = (it) => photosOf(it)[0] || null; // 메인 사진 = 가장 최근 업로드
-  const updated = (it) => (cover(it) && cover(it).date) || it.addedAt || "";
+  // 메인 사진 = 가장 최근 업로드 (noCover: true 인 사진 — 떡잎·실생 기록 등 — 은 대표 사진에서 제외)
+  const cover = (it) => photosOf(it).find((p) => !p.noCover) || photosOf(it)[0] || null;
+  const updated = (it) => (photosOf(it)[0] && photosOf(it)[0].date) || it.addedAt || "";
   const byUpdated = (a, b) => String(updated(b)).localeCompare(String(updated(a)));
   const cmp = (a, b) => String(a || "").localeCompare(String(b || ""), "en", { sensitivity: "base", numeric: true });
 
