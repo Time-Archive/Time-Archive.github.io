@@ -119,3 +119,14 @@ details.fold > summary::-webkit-details-marker { display: none; }
 .buy .price { font-size: 26px; font-weight: 700; letter-spacing: -.01em; line-height: 1; }
 .buy .price small { font-size: 15px; font-weight: 600; margin-left: 2px; color: var(--gray-4); }
 @media (max-width: 760px) { .buy .price { width: 100%; font-size: 24px; } }
+
+/* 식물·생물 사진도 1:1 정사각형으로 (사진 자체가 정사각형이라 잘림 없이 식물체·생물체가 화면 중앙에 꽉 차게) */
+.card .card-img,
+.grid.wide .card .card-img,
+.detail-photo,
+.tl-grid .card-img { aspect-ratio: 1 / 1; }
+.card .card-img img,
+.detail-photo img,
+.tl-grid .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+/* 꽃 탭(외부 사진)은 정사각형 틀 안에 원본 비율 그대로 */
+.tl-grid .card-img.flower img { object-fit: contain; }
