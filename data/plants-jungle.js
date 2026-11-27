@@ -965,7 +965,7 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     addedAt: "2026-11-22",
     buy: "https://smartstore.naver.com/plantimalxkai/products/13891694260",
     price: 10000,
-    photos: [{"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-01.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-02.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-03.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-02.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-03.jpg", "date": "2026-11-22", "caption": ""}],
+    photos: [{"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-01.jpg", "date": "2026-11-27", "caption": "", "title": "무늬 발현"}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-02.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-27-03.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-02.jpg", "date": "2026-11-22", "caption": ""}, {"src": "images/plants/bucephalandra-sp-wavy-green/2026-11-22-03.jpg", "date": "2026-11-22", "caption": ""}],
     flowers: [],
   },
   {

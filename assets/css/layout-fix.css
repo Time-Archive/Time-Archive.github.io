@@ -130,3 +130,6 @@ details.fold > summary::-webkit-details-marker { display: none; }
 .tl-grid .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 /* 꽃 탭(외부 사진)은 정사각형 틀 안에 원본 비율 그대로 */
 .tl-grid .card-img.flower img { object-fit: contain; }
+
+/* 시간의 기록: 날짜 옆 소제목 (예: 무늬 발현) */
+.tl-date .tl-title { margin-left: 10px; padding-left: 10px; border-left: 1px solid var(--gray-2); color: var(--green); font-weight: 700; letter-spacing: 0; text-transform: none; }

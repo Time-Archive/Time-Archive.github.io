@@ -187,9 +187,12 @@
     });
     return `<div class="timeline">${groups
       .map(
-        (g) => `<div><div class="tl-date">${esc(g.d)}</div><div class="tl-grid">${g.items
+        (g) => {
+          const title = (g.items.find((ph) => ph.title) || {}).title; // 그날 기록의 소제목 (사진의 title 값)
+          return `<div><div class="tl-date">${esc(g.d)}${title ? `<span class="tl-title">${esc(title)}</span>` : ""}</div><div class="tl-grid">${g.items
           .map((ph) => `<figure data-lb="${ph.idx}"><div class="card-img"><img src="${esc(ph.src)}" alt="${esc(ph.caption || "")}" loading="lazy"></div>${ph.caption ? `<figcaption>${esc(ph.caption)}</figcaption>` : ""}</figure>`)
-          .join("")}</div></div>`
+          .join("")}</div></div>`;
+        }
       )
       .join("")}</div>`;
   }
