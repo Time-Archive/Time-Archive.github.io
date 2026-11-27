@@ -73,7 +73,7 @@ window.TA_ANIMALS = [
     notes: "",
     sources: [{"title": "AmphibiaWeb — Epipedobates anthonyi", "url": "https://amphibiaweb.org/cgi/amphib_query?where-genus=Epipedobates&where-species=anthonyi", "note": "분포 · 생태"}],
     addedAt: "2026-11-22",
-    photos: [{"src": "images/animals/epipedobates-anthonyi-ankas/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}],
+    photos: [{"src": "images/animals/epipedobates-anthonyi-ankas/2026-11-27-01.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/animals/epipedobates-anthonyi-ankas/2026-11-27-02.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/animals/epipedobates-anthonyi-ankas/2026-11-22-01.jpg", "date": "2026-11-22", "caption": ""}],
   },
   {
     id: "ptm",

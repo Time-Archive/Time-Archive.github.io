@@ -26,7 +26,7 @@ window.TA_PLANTS = (window.TA_PLANTS || []).concat([
     addedAt: "2026-11-19",
     buy: "https://smartstore.naver.com/plantimalxkai/products/13891694473",
     price: 40000,
-    photos: [{"src": "images/plants/philodendron-sp-mini-santiago/2026-11-18-01.jpg", "date": "2026-11-18", "caption": ""}],
+    photos: [{"src": "images/plants/philodendron-sp-mini-santiago/2026-11-27-01.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/philodendron-sp-mini-santiago/2026-11-27-02.jpg", "date": "2026-11-27", "caption": ""}, {"src": "images/plants/philodendron-sp-mini-santiago/2026-11-18-01.jpg", "date": "2026-11-18", "caption": ""}],
     flowers: [],
   },
   {
