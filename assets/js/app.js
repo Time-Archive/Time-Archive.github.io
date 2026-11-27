@@ -90,7 +90,7 @@
 
   const imgOrPh = (it, label) => {
     const c = cover(it);
-    return c ? `<img src="${esc(c.src)}" alt="${esc(label)}" loading="lazy">` : `<div class="ph">${esc(String(label || "?").trim().charAt(0))}</div>`;
+    return c ? `<img src="${esc(c.src)}" alt="${esc(label)}" loading="lazy">` : `<div class="ph ph-soon"><span>사진 추가 예정</span></div>`;
   };
 
   const itemCard = (K) => (p) => `

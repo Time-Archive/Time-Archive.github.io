@@ -133,3 +133,8 @@ details.fold > summary::-webkit-details-marker { display: none; }
 
 /* 시간의 기록: 날짜 옆 소제목 (예: 무늬 발현) */
 .tl-date .tl-title { margin-left: 10px; padding-left: 10px; border-left: 1px solid var(--gray-2); color: var(--green); font-weight: 700; letter-spacing: 0; text-transform: none; }
+
+/* v51: 사진 없는 식물 — 사진 추가 예정 */
+.ph.ph-soon { font-family: var(--sans); font-style: normal; font-size: 14px; font-weight: 600; letter-spacing: .04em; color: var(--gray-3); opacity: 1; }
+.ph.ph-soon span { padding: 7px 16px; border: 1px solid var(--gray-2); border-radius: 999px; background: var(--white); }
+.detail-photo .ph.ph-soon { aspect-ratio: 1 / 1; font-size: 16px; }
